@@ -1,0 +1,438 @@
+D:\Mine\facultate\pf\PF\PF_1>ghci
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :t "aaa"
+"aaa" :: [Char]
+Prelude> :?
+ Commands available from the prompt:
+
+   <statement>                 evaluate/run <statement>
+   :                           repeat last command
+   :{\n ..lines.. \n:}\n       multiline command
+   :add [*]<module> ...        add module(s) to the current target set  
+   :browse[!] [[*]<mod>]       display the names defined by module <mod>
+                               (!: more details; *: all top-level names)
+   :cd <dir>                   change directory to <dir>
+   :cmd <expr>                 run the commands returned by <expr>::IO String
+   :complete <dom> [<rng>] <s> list completions for partial input string
+   :ctags[!] [<file>]          create tags file <file> for Vi (default: "tags")
+                               (!: use regex instead of line number)
+   :def[!] <cmd> <expr>        define command :<cmd> (later defined command has
+                               precedence, ::<cmd> is always a builtin command)
+                               (!: redefine an existing command name)
+   :doc <name>                 display docs for the given name (experimental)
+   :edit <file>                edit file
+   :edit                       edit last module
+   :etags [<file>]             create tags file <file> for Emacs (default: "TAGS")
+   :help, :?                   display this list of commands
+   :info[!] [<name> ...]       display information about the given names
+                               (!: do not filter instances)
+   :instances <type>           display the class instances available for <type>
+   :issafe [<mod>]             display safe haskell information of module <mod>
+   :kind[!] <type>             show the kind of <type>
+                               (!: also print the normalised type)
+   :load[!] [*]<module> ...    load module(s) and their dependents
+                               (!: defer type errors)
+   :main [<arguments> ...]     run the main function with the given arguments
+   :module [+/-] [*]<mod> ...  set the context for expression evaluation
+   :quit                       exit GHCi
+   :reload[!]                  reload the current module set
+                               (!: defer type errors)
+   :run function [<arguments> ...] run the function with the given arguments
+   :script <file>              run the script <file>
+   :type <expr>                show the type of <expr>
+   :type +d <expr>             show the type of <expr>, defaulting type variables
+   :type +v <expr>             show the type of <expr>, with its specified tyvars
+   :unadd <module> ...         remove module(s) from the current target set
+   :undef <cmd>                undefine user-defined command :<cmd>
+   ::<cmd>                     run the builtin command
+   :!<command>                 run the shell command <command>
+
+ -- Commands for debugging:
+
+   :abandon                    at a breakpoint, abandon current computation
+   :back [<n>]                 go back in the history N steps (after :trace)
+   :break [<mod>] <l> [<col>]  set a breakpoint at the specified location
+   :break <name>               set a breakpoint on the specified function
+   :continue                   resume after a breakpoint
+   :delete <number> ...        delete the specified breakpoints
+   :delete *                   delete all breakpoints
+   :disable <number> ...       disable the specified breakpoints
+   :disable *                  disable all breakpoints
+   :enable <number> ...        enable the specified breakpoints
+   :enable *                   enable all breakpoints
+   :force <expr>               print <expr>, forcing unevaluated parts
+   :forward [<n>]              go forward in the history N step s(after :back)
+   :history [<n>]              after :trace, show the execution history
+   :list                       show the source code around current breakpoint
+   :list <identifier>          show the source code for <identifier>
+   :list [<module>] <line>     show the source code around line number <line>
+   :print [<name> ...]         show a value without forcing its computation
+   :sprint [<name> ...]        simplified version of :print
+   :step                       single-step after stopping at a breakpoint
+   :step <expr>                single-step into <expr>
+   :steplocal                  single-step within the current top-level binding
+   :stepmodule                 single-step restricted to the current module
+   :trace                      trace after stopping at a breakpoint
+   :trace <expr>               evaluate <expr> with tracing on (see :history)
+
+ -- Commands for changing settings:
+
+   :set <option> ...           set options
+   :seti <option> ...          set options for interactive evaluation only
+   :set local-config { source | ignore }
+                               set whether to source .ghci in current dir
+                               (loading untrusted config is a security issue)
+   :set args <arg> ...         set the arguments returned by System.getArgs
+   :set prog <progname>        set the value returned by System.getProgName
+   :set prompt <prompt>        set the prompt used in GHCi
+   :set prompt-cont <prompt>   set the continuation prompt used in GHCi
+   :set prompt-function <expr> set the function to handle the prompt
+   :set prompt-cont-function <expr>
+                               set the function to handle the continuation prompt
+   :set editor <cmd>           set the command used for :edit
+   :set stop [<n>] <cmd>       set the command to run when a breakpoint is hit
+   :unset <option> ...         unset options
+
+  Options for ':set' and ':unset':
+
+    +m            allow multiline commands
+    +r            revert top-level expressions after each evaluation
+    +s            print timing/memory stats after each evaluation
+    +t            print type after evaluation
+    +c            collect type/location info after loading modules
+    -<flags>      most GHC command line flags can also be set here
+                         (eg. -v2, -XFlexibleInstances, etc.)
+                    for GHCi-specific flags, see User's Guide,
+                    Flag reference, Interactive-mode options
+
+ -- Commands for displaying information:
+
+   :show bindings              show the current bindings made at the prompt
+   :show breaks                show the active breakpoints
+   :show context               show the breakpoint context
+   :show imports               show the current imports
+   :show linker                show current linker state
+   :show modules               show the currently loaded modules
+   :show packages              show the currently active package flags
+   :show paths                 show the currently active search paths
+   :show language              show the currently active language flags
+   :show targets               show the current set of targets
+   :show <setting>             show value of <setting>, which is one of
+                                  [args, prog, editor, stop]
+   :showi language             show language flags for interactive evaluation
+
+Prelude> sumThree x y z = x + y + z
+Prelude> sumThree 3.2 2 4
+9.2
+Prelude> sumThree 3.2 2 4
+9.2
+Prelude> :load pf1_exercitiul3_8
+[1 of 1] Compiling Main             ( pf1_exercitiul3_8.hs, interpreted )
+Ok, one module loaded.
+*Main> ls
+
+<interactive>:7:1: error: Variable not in scope: ls
+*Main> :t myMax
+myMax :: Int -> Int -> Int
+*Main> cd
+
+<interactive>:9:1: error:
+    * Variable not in scope: cd
+    * Perhaps you meant one of these:
+        `id' (imported from Prelude), `gcd' (imported from Prelude)
+*Main> :!cd
+D:\Mine\facultate\pf\PF\PF_1
+*Main> :ls
+unknown command ':ls'
+use :? for help.
+*Main> :!ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+*Main> :t myMax
+myMax :: Int -> Int -> Int
+*Main> :load pf1_exercitiul3_10.hs
+[1 of 1] Compiling Main             ( pf1_exercitiul3_10.hs, interpreted )
+Ok, one module loaded.
+*Main> myMaxThree 1 2 3
+3
+*Main> :load pf1_exercitiul3_11
+[1 of 1] Compiling Main             ( pf1_exercitiul3_11.hs, interpreted )
+Ok, one module loaded.
+*Main> mySum 40
+820
+*Main> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+Ok, one module loaded.
+*Main> myMmmdc 10 5
+
+<interactive>:19:1: error:
+    Variable not in scope: myMmmdc :: t0 -> t1 -> t
+*Main> myMmmdc 10 5
+
+<interactive>:20:1: error:
+    Variable not in scope: myMmmdc :: t0 -> t1 -> t
+*Main> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+Ok, one module loaded.
+*Main> myMmmdc 10 5
+
+<interactive>:22:1: error:
+    Variable not in scope: myMmmdc :: t0 -> t1 -> t
+*Main> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:20: error:
+    Variable not in scope: (%) :: Int -> Int -> t0
+  |
+8 | myMmmdc x y = if x % y != 0 then (myMmmdc y (x % y) )
+  |                    ^
+
+pf1_exercitiul3_13.hs:8:24: error:
+    * Variable not in scope: (!=) :: t0 -> t1 -> Bool
+    * Perhaps you meant one of these:
+        `>=' (imported from Prelude), `==' (imported from Prelude),
+        `/=' (imported from Prelude)
+  |
+8 | myMmmdc x y = if x % y != 0 then (myMmmdc y (x % y) )
+  |                        ^^
+
+pf1_exercitiul3_13.hs:8:48: error:
+    Variable not in scope: (%) :: Int -> Int -> Int
+  |
+8 | myMmmdc x y = if x % y != 0 then (myMmmdc y (x % y) )
+  |                                                ^
+Failed, no modules loaded.
+Prelude> 
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:20: error:
+    Variable not in scope: (%) :: Int -> Int -> t0
+  |
+8 | myMmmdc x y = if x % y != 0 then myMmmdc y (x % y)
+  |                    ^
+
+pf1_exercitiul3_13.hs:8:24: error:
+    * Variable not in scope: (!=) :: t0 -> t1 -> Bool
+    * Perhaps you meant one of these:
+        `>=' (imported from Prelude), `==' (imported from Prelude),
+        `/=' (imported from Prelude)
+  |
+8 | myMmmdc x y = if x % y != 0 then myMmmdc y (x % y)
+  |                        ^^
+
+pf1_exercitiul3_13.hs:8:47: error:
+    Variable not in scope: (%) :: Int -> Int -> Int
+  |
+8 | myMmmdc x y = if x % y != 0 then myMmmdc y (x % y)
+  |                                               ^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:28: error:
+    * Variable not in scope: (!=) :: Int -> t0 -> Bool
+    * Perhaps you meant one of these:
+        `>=' (imported from Prelude), `==' (imported from Prelude),
+        `/=' (imported from Prelude)
+  |
+8 | myMmmdc x y = if x `mod` y != 0 then myMmmdc y (x `mod` y)
+  |                            ^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:18: error:
+    * Couldn't match expected type `Bool' with actual type `Int'
+    * In the expression: x `mod` y <> 0
+      In the expression:
+        if x `mod` y <> 0 then myMmmdc y (x `mod` y) else y
+      In an equation for `myMmmdc':
+          myMmmdc x y = if x `mod` y <> 0 then myMmmdc y (x `mod` y) else y
+  |
+8 | myMmmdc x y = if x `mod` y <> 0 then myMmmdc y (x `mod` y)
+  |                  ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:29: error: parse error on input `<>'
+  |
+8 | myMmmdc x y = if x `mod` y `<>` 0 then myMmmdc y (x `mod` y)
+  |                             ^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:21: error:
+    Variable not in scope: (%) :: Int -> Int -> t0
+  |
+8 | myMmmdc x y = if (x % y) != 0 then myMmmdc y (x % y)
+  |                     ^
+
+pf1_exercitiul3_13.hs:8:26: error:
+    * Variable not in scope: (!=) :: t0 -> t1 -> Bool
+    * Perhaps you meant one of these:
+        `>=' (imported from Prelude), `==' (imported from Prelude),
+        `/=' (imported from Prelude)
+  |
+8 | myMmmdc x y = if (x % y) != 0 then myMmmdc y (x % y)
+  |                          ^^
+
+pf1_exercitiul3_13.hs:8:49: error:
+    Variable not in scope: (%) :: Int -> Int -> Int
+  |
+8 | myMmmdc x y = if (x % y) != 0 then myMmmdc y (x % y)
+  |                                                 ^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+
+pf1_exercitiul3_13.hs:8:30: error:
+    * Variable not in scope: (!=) :: Int -> t0 -> Bool
+    * Perhaps you meant one of these:
+        `>=' (imported from Prelude), `==' (imported from Prelude),
+        `/=' (imported from Prelude)
+  |
+8 | myMmmdc x y = if (x `mod` y) != 0 then myMmmdc y (x `mod` y)
+  |                              ^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_13
+[1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
+Ok, one module loaded.
+*Main> myMmmdc 10 5
+5
+*Main> 20 5
+
+<interactive>:33:1: error:
+    * Non type-variable argument in the constraint: Num (t1 -> t2)
+      (Use FlexibleContexts to permit this)
+    * When checking the inferred type
+        it :: forall t1 t2. (Num t1, Num (t1 -> t2)) => t2
+*Main> myMmmdc 20 5
+5
+*Main> myMmmdc 20 30
+10
+*Main> 2
+2      
+*Main> 2 + 3
+5      
+*Main> 2 + 3 * 5
+17     
+*Main> (2 + 3) * 5
+25     
+*Main> 3 / 5
+0.6    
+*Main> 45345345346536 * 54425523454534333
+2467944156711854340070394620488
+*Main> True
+True   
+*Main> True && False
+False  
+*Main> "aaa" == "aba"
+False
+*Main> 2
+2
+*Main> (+) 2 3
+5
+*Main> (+) 2 ((*) 3 5)
+17
+*Main> (*) ((+) 2 3) 5
+25
+*Main> (/) 3 5
+0.6
+*Main> (*) 45345345346536 54425523454534333
+2467944156711854340070394620488
+*Main> (/) 3 0
+Infinity
+*Main> True
+True
+*Main> False
+False
+*Main> (&&) True False
+False
+*Main> (||) True False
+True
+*Main> not True
+False
+*Main> (<=) 2 3
+True
+*Main> not ((<=) 2 3)
+False
+*Main> (||) ((<=) 2 3) True
+True
+*Main> (==) "aaa" "aba"
+False
+*Main> (==) "aba" "aba"
+True
+*Main> (++) "aaa" "aba"
+"aaaaba"
+*Main> 2
+2
+*Main> (+) 2 3
+5
+*Main> (+) 2 ((*) 3 5)
+17
+*Main> (*) ((+) 2 3) 5
+25
+*Main> (/) 3 5
+0.6
+*Main> (*) 45345345346536 54425523454534333
+2467944156711854340070394620488
+*Main> (/) 3 0
+Infinity
+*Main> True
+True
+*Main> False
+False
+*Main> (&&) True False
+False
+*Main> (||) True False
+True
+*Main> not True
+False
+*Main> (<=) 2 3
+True
+*Main> not ((<=) 2 3)
+False
+*Main> (||) ((<=) 2 3) True
+True
+*Main> (==) "aaa" "aba"
+False
+*Main> (==) "aba" "aba"
+True
+*Main> (++) "aaa" "aba"
+"aaaaba"
+*Main> :t a
+
+<interactive>:1:1: error: Variable not in scope: a
+*Main> :t not
+not :: Bool -> Bool
+*Main> :t 2
+2 :: Num p => p
+*Main> :load pf1_exercitiul3_2_si_3_3.hs
+[1 of 1] Compiling Main             ( pf1_exercitiul3_2_si_3_3.hs, interpreted )
+
+pf1_exercitiul3_2_si_3_3.hs:6:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+  |
+6 | sumThree 6 2 3 -- 11
+  | ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_2_si_3_3   
+[1 of 1] Compiling Main             ( pf1_exercitiul3_2_si_3_3.hs, interpreted )
+
+pf1_exercitiul3_2_si_3_3.hs:6:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+  |
+6 | sumThree 6 2 3 -- 11
+  | ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :load pf1_exercitiul3_2_si_3_3
+[1 of 1] Compiling Main             ( pf1_exercitiul3_2_si_3_3.hs, interpreted )
+Ok, one module loaded.
+*Main> sumThree 6 2 3
+11
+*Main>

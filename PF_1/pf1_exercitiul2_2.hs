@@ -1,3 +1,6 @@
+-- Evaluati, toate expresiile de mai sus ın forma prefixata. Atent, ie la prioritatile
+-- operatorilor!
+
 2
 2 + 3
 2 + 3 * 5
@@ -17,9 +20,8 @@ not (2 <= 3)
 "aba" == "aba"
 "aaa" ++ "aba"
 
--- Evaluati, toate expresiile de mai sus ın forma prefixata. Atent, ie la prioritatile
--- operatorilor!
 
+--rezolvare
 2
 (+) 2 3
 (+) 2 ((*) 3 5)
