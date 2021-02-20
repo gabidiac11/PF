@@ -436,3 +436,229 @@ Ok, one module loaded.
 *Main> sumThree 6 2 3
 11
 *Main>
+
+
+
+*Main> :load functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> id "a"
+
+<interactive>:10:1: error:
+    Ambiguous occurrence `id'
+    It could refer to
+       either `Prelude.id',
+              imported from `Prelude' at functii.hs:1:1
+              (and originally defined in `GHC.Base')
+           or `Main.id', defined at functii.hs:1:1
+*Main> id 2
+
+<interactive>:11:1: error:
+    Ambiguous occurrence `id'
+    It could refer to
+       either `Prelude.id',
+              imported from `Prelude' at functii.hs:1:1
+              (and originally defined in `GHC.Base')
+           or `Main.id', defined at functii.hs:1:1
+*Main> id x = x
+*Main> id 3
+3
+*Main> mulThree 5 5 5
+125
+*Main>
+
+
+
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> id "a"
+"a"
+Prelude> :l functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> id "b"
+
+<interactive>:3:1: error:
+    Ambiguous occurrence `id'
+    It could refer to
+       either `Prelude.id',
+              imported from `Prelude' at functii.hs:1:1
+              (and originally defined in `GHC.Base')
+           or `Main.id', defined at functii.hs:1:1
+*Main> :l functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> id "a"
+"a"
+*Main> id 4
+4
+*Main> id "a"
+"a"
+*Main> id 666
+666
+*Main> :load functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> id 26
+26
+*Main> id 1000
+1000
+*Main> id 'a'
+'a'
+*Main> char id x = x
+*Main> id 4
+4
+*Main> id 4000
+4000
+*Main> :t "a"
+"a" :: [Char]
+*Main> :t "ad"
+"ad" :: [Char]
+*Main> :t 'ad'
+
+<interactive>:1:1: error:
+    * Syntax error on 'ad'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    * In the Template Haskell quotation 'ad'
+*Main> :l functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> id 3
+
+<interactive>:20:1: error:
+    Ambiguous occurrence `id'
+    It could refer to
+       either `Prelude.id',
+              imported from `Prelude' at functii.hs:1:1
+              (and originally defined in `GHC.Base')
+           or `Main.id', defined at functii.hs:2:1
+*Main> id "4"
+
+<interactive>:21:1: error:
+    Ambiguous occurrence `id'
+    It could refer to
+       either `Prelude.id',
+              imported from `Prelude' at functii.hs:1:1
+              (and originally defined in `GHC.Base')
+           or `Main.id', defined at functii.hs:2:1
+*Main> id x = x
+*Main> :t id
+id :: p -> p
+*Main> :l functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> :t sumThree
+sumThree :: Num a => a -> a -> a -> a
+*Main> :load functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> :t sumThree
+sumThree :: Num a => a -> a -> a -> a
+*Main> sumThree 3.2 2 4
+9.2
+*Main> : :t sumThree
+
+<interactive>:1:1: error: parse error on input `:'
+*Main> :t sumThree
+sumThree :: Num a => a -> a -> a -> a
+*Main> sumThree 3.2 2 4
+9.2
+*Main> :t sumThree
+sumThree :: Num a => a -> a -> a -> a
+*Main> :t (sumThree 3.2 2 4)
+(sumThree 3.2 2 4) :: Fractional a => a
+*Main> :t (sumThree 3 2 4)
+(sumThree 3 2 4) :: Num a => a
+*Main> :t (sumThree 0 2 4)
+(sumThree 0 2 4) :: Num a => a
+*Main> :t not a
+
+<interactive>:1:5: error: Variable not in scope: a :: Bool
+*Main> :t (not a)
+
+<interactive>:1:6: error: Variable not in scope: a :: Bool
+*Main> not a
+
+<interactive>:38:5: error: Variable not in scope: a :: Bool
+*Main> :t (not True)
+(not True) :: Bool
+*Main> :t (not (True && False))
+(not (True && False)) :: Bool
+*Main> :l pf1_exercitiul3_9
+[1 of 1] Compiling Main             ( pf1_exercitiul3_9.hs, interpreted )
+Ok, one module loaded.
+*Main> :t myMax
+myMax :: Int -> Int -> Int
+*Main> myMax 9 8 3
+
+<interactive>:43:1: error:
+    * Couldn't match expected type `t0 -> t' with actual type `Int'
+    * The function `myMax' is applied to three arguments,
+      but its type `Int -> Int -> Int' has only two
+      In the expression: myMax 9 8 3
+      In an equation for `it': it = myMax 9 8 3
+    * Relevant bindings include it :: t (bound at <interactive>:43:1)
+*Main> myMax 9 8
+9
+*Main> :l pf1_exercitiul3_10
+[1 of 1] Compiling Main             ( pf1_exercitiul3_10.hs, interpreted )
+Ok, one module loaded.
+*Main> myMaxThree 5 9 3
+9
+*Main> :t myMaxThree
+myMaxThree :: Int -> Int -> Int -> Int
+*Main> :l pf1_exercitiul3_11
+[1 of 1] Compiling Main             ( pf1_exercitiul3_11.hs, interpreted )
+Ok, one module loaded.
+*Main> mySum -3
+
+<interactive>:49:1: error:
+    * No instance for (Num (Int -> Int)) arising from a use of `-'
+        (maybe you haven't applied a function to enough arguments?)
+    * In the expression: mySum - 3
+      In an equation for `it': it = mySum - 3
+*Main>
+*Main> mySum (-3)
+0
+*Main> mySum 30
+465
+*Main> mySum 300
+45150
+*Main> mySum 300000000
+*** Exception: stack overflow
+*Main>
+
+
+*Main> :t not 2
+
+<interactive>:1:5: error:
+    * No instance for (Num Bool) arising from the literal `2'
+    * In the first argument of `not', namely `2'
+      In the expression: not 2
+*Main> :t not
+not :: Bool -> Bool
+*Main> :load functii
+[1 of 1] Compiling Main             ( functii.hs, interpreted )
+Ok, one module loaded.
+*Main> myMulThree 3 4 6
+
+<interactive>:58:1: error:
+    * Variable not in scope: myMulThree :: t0 -> t1 -> t2 -> t
+    * Perhaps you meant `mulThree' (line 4)
+*Main> mulThree 3 4 6
+72
+*Main> :l pf1_exercitiul3_12
+[1 of 1] Compiling Main             ( pf1_exercitiul3_12.hs, interpreted )
+Ok, one module loaded.
+*Main> myFib 7
+13
+*Main> myFib 9
+34
+*Main> myFib (-0)
+0
+*Main> myFib (-099)
+0
+*Main> myFib (-99)
+0
+*Main> myFib (99)
+Interrupted.
+*Main>

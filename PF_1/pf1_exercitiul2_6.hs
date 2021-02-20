@@ -1,10 +1,15 @@
--- Exercit, iul 2.6. Evaluat, i ˆın ghci expresia not 2. Ce obt, inet, i?
+{-
+  Exercitiul 2.6. Evaluati ın ghci expresia not 2. Ce obtineti?
+-} 
 
 not 2
 
--- respuns: intervine o eroare deorece haskell, prin comanda ":t not 2", nu se determina valoare expresiei,
---          pentru ca rezultatul expresie este determinat la compilare, nu la evaluare (dupa cum relateaza notele de curs)
+-- intervine o eroare deorece operatorul not trebuie sa primeasca intodeauna un argument de tip Bool
 
+:t not
+not :: Bool -> Bool
+
+*Main> :t not 2
 <interactive>:57:5: error:
     * No instance for (Num Bool) arising from the literal `2'
     * In the first argument of `not', namely `2'

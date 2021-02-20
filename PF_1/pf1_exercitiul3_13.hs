@@ -1,18 +1,18 @@
--- Exercit, iul 3.13. Definit, io functie recursiva care returneaza cel mai mare divizor comun a
--- doua numere.
-
 {-
-
+      Exercitiul 3.13. Definiti o functie recursiva care returneaza cel mai mare divizor comun a doua numere
 -}
+
 myMmmdc :: Int -> Int -> Int
 myMmmdc x y = if not ((x `mod` y) == 0) then myMmmdc y (x `mod` y)
           else y
 
 -- interactiune:
 {- 
- :load pf1_exercitiul3_13
       
- ****am avut probleme cu modulo (am cautat solutia pe internet ca fiind `mod`) si cu operatorul !=, despre care aici mi-am dat seama ca este folosit ca not
+      ***am avut probleme cu modulo (am cautat solutia pe internet ca fiind `mod`) si cu operatorul !=, 
+      despre care mi-am dat seama ca-l pot inlocui cu not
+
+      :load pf1_exercitiul3_13
 
       *Main> :load pf1_exercitiul3_13
       [1 of 1] Compiling Main             ( pf1_exercitiul3_13.hs, interpreted )
@@ -173,5 +173,3 @@ myMmmdc x y = if not ((x `mod` y) == 0) then myMmmdc y (x `mod` y)
       *Main>
 
 -}
-
--- calculeaza (n + (n-1)+(n-2)...(n-n))

@@ -1,5 +1,7 @@
--- Evaluati, toate expresiile de mai sus ın forma prefixata. Atent, ie la prioritatile
--- operatorilor!
+{-
+    Exercitiul 2.2. Evaluati toate expresiile de mai sus ın forma prefixata. 
+    Atentie la prioritatile operatorilor!
+-}
 
 2
 2 + 3

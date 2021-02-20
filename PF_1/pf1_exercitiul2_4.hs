@@ -1,4 +1,7 @@
--- Exercit, iul 2.4. Utilizat, i :t pentru a afla tipul expresiei: "aaa".
---  Ceret, i profesorului de laborator s˘a v˘a explice tipul afis,at.
+{-
+    Exercitiul 2.4. Utilizati :t pentru a afla tipul expresiei: "aaa".
+    Cereti profesorului de laborator sa va explice tipul afisat.
+-}
 
-:t "aaa"
+Prelude> :t "aaa"
+"aaa" :: [Char]

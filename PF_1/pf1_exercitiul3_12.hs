@@ -1,22 +1,30 @@
--- Exercit, iul 3.12. Definit, i o funct, ie recursiv˘a care returneaz˘a elementul de pe pozit, ia dat˘a ca
--- argument din s, irul lui Fibonacci.
-
 {-
-ia ca argumente n, indexul curent, indexul cautat
+      Exercitiul 3.12. Definiti o functie recursiva care returneaza elementul de pe pozitia data ca
+      argument din sirul lui Fibonacci.
 -}
-myFib :: Int -> Int -> Int -> Int
-myFib x cIndex searchIndex = if x <= 0 then  0 
-          else if x == 1 then 1
-                else (+) (mySum (x - 2) cIndex +  ) (mySum (x - 1))
 
-myFib :: Int -> Int -> Int
-myFib x = if x <= 0 then  0 
+myFib :: Int -> Int
+myFib x  = if x <= 0 then  0 
           else if x == 1 then 1
-                else (+) (mySum (x - 2)) (mySum (x - 1))
+                else (+) (myFib (x - 2)) (myFib (x - 1))
 
--- interactiune:
 {- 
+      interactiune:
 
+      *Main> :l pf1_exercitiul3_12
+      [1 of 1] Compiling Main             ( pf1_exercitiul3_12.hs, interpreted )
+      Ok, one module loaded.
+      *Main> myFib 7
+      13
+      *Main> myFib 9
+      34
+      *Main> myFib (-0)
+      0
+      *Main> myFib (-099)
+      0
+      *Main> myFib (-99)
+      0
+      *Main> myFib (99)
+      Interrupted.
+      *Main>
 -}
-
--- calculeaza (n + (n-1)+(n-2)...(n-n))
