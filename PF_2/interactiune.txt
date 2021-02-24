@@ -1,0 +1,39 @@
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l pf2_ex_1_2
+[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+
+pf2_ex_1_2.hs:7:1: error: parse error on input `|'
+  |
+7 | | Laptop
+  | ^
+Failed, no modules loaded.
+Prelude> :l pf2_ex_1_2
+[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+Ok, one module loaded.
+*Main> :t MobileDevice
+
+<interactive>:1:1: error:
+    Data constructor not in scope: MobileDevice
+*Main> :t MobileDevice
+
+<interactive>:1:1: error:
+    Data constructor not in scope: MobileDevice
+*Main> :t Smartphone
+Smartphone :: MobileDevice
+*Main> :t Laptop
+Laptop :: MobileDevice
+*Main> :t Tablet
+Tablet :: MobileDevice
+*Main> Smartphone
+
+<interactive>:8:1: error:
+    * No instance for (Show MobileDevice) arising from a use of `print'
+    * In a stmt of an interactive GHCi command: print it
+*Main> :l pf2_ex_1_2
+[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+Ok, one module loaded.
+*Main> Smartphone
+Smartphone
+
+
+
