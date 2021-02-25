@@ -1,39 +1,372 @@
 GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
-Prelude> :l pf2_ex_1_2
-[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+Prelude> :l pf2_ex1
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> and True 
 
-pf2_ex_1_2.hs:7:1: error: parse error on input `|'
-  |
-7 | | Laptop
-  | ^
+<interactive>:2:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1  
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1      
+*Main> and True False 
+
+<interactive>:3:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> and True False
+
+<interactive>:4:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> and True True 
+
+<interactive>:5:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> :t and
+
+<interactive>:1:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> :l pf2_ex1    
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> and True True
+True
+
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l pf2_ex1
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> and True 
+
+<interactive>:2:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1  
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1      
+*Main> and True False 
+
+<interactive>:3:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> and True False
+
+<interactive>:4:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> and True True 
+
+<interactive>:5:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> :t and
+
+<interactive>:1:1: error:
+    Ambiguous occurrence `and'
+    It could refer to
+       either `Prelude.and',
+              imported from `Prelude' at pf2_ex1.hs:1:1
+              (and originally defined in `Data.Foldable')
+           or `Main.and', defined at pf2_ex1.hs:6:1
+*Main> :l pf2_ex1
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> and True True
+True
+*Main> :l pf2_ex1   
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> or True False
+
+<interactive>:10:1: error:
+    Ambiguous occurrence `or'
+    It could refer to        
+       either `Prelude.or',  
+              imported from `Prelude' at pf2_ex1.hs:5:1-27
+              (and originally defined in `Data.Foldable') 
+           or `Main.or', defined at pf2_ex1.hs:13:1
+*Main> :l pf2_ex1   
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> or True False
+True
+*Main> or False False
+False
+*Main> or False True 
+True
+*Main> neg True
+False
+*Main> neg False
+True
+*Main> nand True True
+False
+*Main> nand True False
+True
+*Main> nor True False
+False
+*Main> nor True True
+False
+*Main> nor False True
+False
+*Main> nor False False
+True
+*Main> implicatie True False
+False
+*Main> implicatie True True  
+True
+*Main> implicatie_dubla True True
+True
+*Main> implicatie_dubla False True
+False
+*Main> :l pf2_ex2                 
+target `pf2_ex2' is not a module name or a source file
+*Main> :l pf2_ex1
+[1 of 1] Compiling Main             ( pf2_ex1.hs, interpreted )
+Ok, one module loaded.
+*Main> implicatie_dubla False True
+True
+*Main> implicatie_dubla True False
+False
+*Main> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+
+pf2_ex2.hs:14:28: error:
+    * No instance for (Fractional Integer) arising from a use of `/'
+    * In the second argument of `hasDivisors', namely `(n / 2)'
+      In the expression: hasDivisors n (n / 2) (n - 1)
+      In an equation for `isPrime':
+          isPrime n = hasDivisors n (n / 2) (n - 1)
+   |
+14 | isPrime n = hasDivisors n (n / 2) (n - 1)
+   |                            ^^^^^
 Failed, no modules loaded.
-Prelude> :l pf2_ex_1_2
-[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+Prelude> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+
+pf2_ex2.hs:14:14: error: Variable not in scope: neg :: Bool -> Bool
+   |
+14 | isPrime n = (neg (hasDivisors n (n / 2) (n - 1)))
+   |              ^^^
+Failed, no modules loaded.
+Prelude> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+
+pf2_ex2.hs:14:13: error: Variable not in scope: neg :: Bool -> Bool
+   |
+14 | isPrime n = neg (hasDivisors n (ceiling(sqrt n)) (n - 1))
+   |             ^^^
+Failed, no modules loaded.
+Prelude> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+
+pf2_ex2.hs:14:29: error:
+    * No instance for (RealFrac Integer)
+        arising from a use of `ceiling'
+    * In the second argument of `hasDivisors', namely
+        `(ceiling (sqrt n))'
+      In the expression: (hasDivisors n (ceiling (sqrt n)) (n - 1))
+      In an equation for `isPrime':
+          isPrime n = (hasDivisors n (ceiling (sqrt n)) (n - 1))
+   |
+14 | isPrime n = (hasDivisors n (ceiling(sqrt n)) (n - 1))
+   |                             ^^^^^^^^^^^^^^^
+
+pf2_ex2.hs:14:37: error:
+    * No instance for (Floating Integer) arising from a use of `sqrt'
+    * In the first argument of `ceiling', namely `(sqrt n)'
+      In the second argument of `hasDivisors', namely
+        `(ceiling (sqrt n))'
+      In the expression: (hasDivisors n (ceiling (sqrt n)) (n - 1))
+   |
+14 | isPrime n = (hasDivisors n (ceiling(sqrt n)) (n - 1))
+   |                                     ^^^^^^
+Failed, no modules loaded.
+Prelude> :t sqrt
+sqrt :: Floating a => a -> a
+Prelude> :t fromInteger
+fromInteger :: Num a => Integer -> a
+Prelude> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
 Ok, one module loaded.
-*Main> :t MobileDevice
-
-<interactive>:1:1: error:
-    Data constructor not in scope: MobileDevice
-*Main> :t MobileDevice
-
-<interactive>:1:1: error:
-    Data constructor not in scope: MobileDevice
-*Main> :t Smartphone
-Smartphone :: MobileDevice
-*Main> :t Laptop
-Laptop :: MobileDevice
-*Main> :t Tablet
-Tablet :: MobileDevice
-*Main> Smartphone
-
-<interactive>:8:1: error:
-    * No instance for (Show MobileDevice) arising from a use of `print'
-    * In a stmt of an interactive GHCi command: print it
-*Main> :l pf2_ex_1_2
-[1 of 1] Compiling Main             ( pf2_ex_1_2.hs, interpreted )
+*Main> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
 Ok, one module loaded.
-*Main> Smartphone
-Smartphone
+*Main> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+Ok, one module loaded.
+*Main> isPrime 2
+True
+*Main> isPrime 6
+False
+*Main> isPrime 1
+True
+*Main> :l pf2_ex2
+[1 of 1] Compiling Main             ( pf2_ex2.hs, interpreted )
+Ok, one module loaded.
+*Main> isPrime 2
+True
+*Main> isPrime 1
+False
+*Main> :l pf2_ex3
+[1 of 1] Compiling Main             ( pf2_ex3.hs, interpreted )
+Ok, one module loaded.
+*Main> cmmdcEuclid 10 5
 
+<interactive>:48:1: error:
+    Variable not in scope: cmmdcEuclid :: t0 -> t1 -> t
+*Main> :l pf2_ex3      
+[1 of 1] Compiling Main             ( pf2_ex3.hs, interpreted )
 
+pf2_ex3.hs:7:28: error:
+    * Couldn't match expected type `Bool' with actual type `Integer'
+    * In the expression: x
+      In an equation for `cmmdcEuclid': cmmdcEuclid x y | y <= 0 = x
+  |
+7 | cmmdcEuclid x y | y <= 0 = x
+  |                            ^
+Failed, no modules loaded.
+Prelude> :l pf2_ex3
+[1 of 1] Compiling Main             ( pf2_ex3.hs, interpreted )
+Ok, one module loaded.
+*Main> cmmdcEuclid 10 5
+5
+*Main> cmmdcEuclid 10 9
+1
+*Main> cmmdcEuclid 32 9
+1
+*Main> cmmdcEuclid 32 16
+16
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
 
+pf2_ex5.hs:17:5: error: lexical error at character ' '
+   |
+17 | fibo? :: Integer -> Integer
+   |     ^
+Failed, no modules loaded.
+Prelude> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+
+pf2_ex5.hs:7:21: error: Variable not in scope: n :: Integer
+  |
+7 | fibo x = (+) (fibo (n - 1)) (fibo (n - 2))
+  |                     ^
+
+pf2_ex5.hs:7:36: error: Variable not in scope: n :: Integer
+  |
+7 | fibo x = (+) (fibo (n - 1)) (fibo (n - 2))
+  |                                    ^
+Failed, no modules loaded.
+Prelude> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo 2
+2
+*Main> fibo 0
+1
+*Main> fibo -1
+
+<interactive>:60:1: error:
+    * No instance for (Num (Integer -> Integer))
+        arising from a use of `-'
+        (maybe you haven't applied a function to enough arguments?)
+    * In the expression: fibo - 1
+      In an equation for `it': it = fibo - 1
+*Main> fibo 3 
+3
+*Main> fibo 4
+5
+*Main> fibo' 3
+2
+*Main> fibo' 1
+1
+*Main> fibo' 5
+5
+*Main> fibo' 6
+8
+*Main> fibo' 9
+34
+*Main> fibo' 7
+13
+*Main> fibo' 0
+0
+*Main> fibo' 1
+1
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo 1
+0
+*Main> fibo 2
+1
+*Main> fibo 3
+1
+*Main> fibo 4 
+2
+*Main> fibo 5
+3
+*Main> fibo 6
+5
+*Main> :l pf2_ex6
+[1 of 1] Compiling Main             ( pf2_ex6.hs, interpreted )
+Ok, one module loaded.
+*Main> cmmdcEuclid 5 6
+1
+*Main> :l pf2_ex6
+[1 of 1] Compiling Main             ( pf2_ex6.hs, interpreted )
+
+pf2_ex6.hs:7:25: error:
+    Variable not in scope: cmmdcEuclid :: Integer -> Integer -> Integer
+  |
+7 | cmmdcEuclidExtins x y = cmmdcEuclid y (x `mod` y)
+  |                         ^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf2_ex6
+[1 of 1] Compiling Main             ( pf2_ex6.hs, interpreted )
+Ok, one module loaded.
+*Main> cmmdcEuclidExtins 100 20
+20
+*Main> cmmdcEuclidExtins 100 21
+1
+*Main> :l pf2_ex7
+[1 of 1] Compiling Main             ( pf2_ex7.hs, interpreted )
+Ok, one module loaded.
+*Main> succ 2
+3
