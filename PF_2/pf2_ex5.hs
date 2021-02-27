@@ -20,8 +20,17 @@ fibo' :: Integer -> Integer
 fibo' n = fiboaux n 0 1
 
 {-
-
     Implementati varianta care functioneaza ın timp O(log(n)).
     Folositi un rationament ecuational pentru a arata ca fibo si fibo’ sunt echivalente
     functional.
 -}
+
+fiboLognAux :: Integer -> Integer ->  Integer -> Integer -> Integer -> Integer
+fiboLognAux i n a b c | i >= n = c
+fiboLognAux i n a b c = fiboLognAux (i + 1) n b c (b + c)
+
+fiboLogn :: Integer -> Integer
+fiboLogn 0 = 0
+fiboLogn 1 = 0
+fiboLogn 2 = 1
+fiboLogn n = fiboLognAux 3 n 0 1 1

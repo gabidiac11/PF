@@ -370,3 +370,146 @@ Ok, one module loaded.
 Ok, one module loaded.
 *Main> succ 2
 3
+
+
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l pf2_ex9
+[1 of 1] Compiling Main             ( pf2_ex9.hs, interpreted )
+Ok, one module loaded.
+*Main> div 18 9
+
+<interactive>:2:1: error:
+    Ambiguous occurrence `div'
+    It could refer to
+       either `Prelude.div',
+              imported from `Prelude' at pf2_ex9.hs:1:1
+              (and originally defined in `GHC.Real')
+           or `Main.div', defined at pf2_ex9.hs:13:1
+*Main> :l pf2_ex9
+[1 of 1] Compiling Main             ( pf2_ex9.hs, interpreted )
+Ok, one module loaded.
+*Main> div 18 9
+2
+*Main> 4 9
+
+<interactive>:5:1: error:
+    * Non type-variable argument in the constraint: Num (t1 -> t2)
+      (Use FlexibleContexts to permit this)
+    * When checking the inferred type
+        it :: forall t1 t2. (Num t1, Num (t1 -> t2)) => t2
+*Main> div 4 9
+1
+*Main> :l pf2_ex9
+[1 of 1] Compiling Main             ( pf2_ex9.hs, interpreted )
+Ok, one module loaded.
+*Main> div 4 9
+0
+*Main> div 9 9
+1
+*Main> div 26 7
+4
+*Main> :l pf2_ex9
+[1 of 1] Compiling Main             ( pf2_ex9.hs, interpreted )
+Ok, one module loaded.
+*Main> div 26 7
+3
+*Main> mod 26 7
+
+<interactive>:13:1: error:
+    Ambiguous occurrence `mod'
+    It could refer to
+       either `Prelude.mod',
+              imported from `Prelude' at pf2_ex9.hs:4:1-27
+              (and originally defined in `GHC.Real')
+           or `Main.mod', defined at pf2_ex9.hs:20:1
+*Main> :l pf2_ex9
+[1 of 1] Compiling Main             ( pf2_ex9.hs, interpreted )
+Ok, one module loaded.
+*Main> mod 26 7
+5
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+
+pf2_ex5.hs:32:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+32 | fiboLogn :: Integer -> Integer
+   | ^
+Failed, no modules loaded.
+Prelude> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 3
+1
+*Main> fiboLogn 6
+6
+*Main> fiboLogn 6
+6
+*Main> fiboLogn 8
+8
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 6
+5
+*Main> fiboLogn 12
+28
+*Main> fiboLogn 8
+9
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 8
+12
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+
+pf2_ex5.hs:29:33: error:
+    * Couldn't match expected type `Integer -> Integer'
+                  with actual type `Integer'
+    * In the expression: c
+      In an equation for `fiboLognAux': fiboLognAux i n a b c | i > n = c
+   |
+29 | fiboLognAux i n a b c | i > n = c
+   |                                 ^
+
+pf2_ex5.hs:37:14: error:
+    * Couldn't match expected type `Integer'
+                  with actual type `Integer -> Integer'
+    * Probable cause: `fiboLognAux' is applied to too few arguments
+      In the expression: fiboLognAux 0 n 0 1 1
+      In an equation for `fiboLogn': fiboLogn n = fiboLognAux 0 n 0 1 1
+   |
+37 | fiboLogn n = fiboLognAux 0 n 0 1 1
+   |              ^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 8
+12
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 8
+9
+*Main> fiboLogn 9
+12
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 9
+5
+*Main> fiboLogn 9
+5
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 9
+7
+*Main> :l pf2_ex5
+[1 of 1] Compiling Main             ( pf2_ex5.hs, interpreted )
+Ok, one module loaded.
+*Main> fiboLogn 9
+21
+*Main>

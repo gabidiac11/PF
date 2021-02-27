@@ -1,7 +1,7 @@
 {-
     2. test de primalitate: isPrime :: Integer -> Bool;
     Folositi o functie auxiliara
-        hasDivisors 
+    hasDivisors 
     astfel ıncat hasDivisors n a b testeaza daca numarul natural n are divizori intre numerele natural a si b.
 -}
 
