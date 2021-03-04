@@ -1,0 +1,322 @@
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+Ok, one module loaded.
+*Main> :t MobileDEvice
+
+<interactive>:1:1: error:
+    Data constructor not in scope: MobileDEvice
+*Main> :t True
+True :: Bool
+*Main> :t MobileDevice
+
+<interactive>:1:1: error:
+    Data constructor not in scope: MobileDevice
+*Main> (nu am salvat fisierul.."
+
+<interactive>:5:23: error: parse error on input `..'
+*Main> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+Ok, one module loaded.
+*Main> :t MobileDevice
+
+<interactive>:1:1: error:
+    Data constructor not in scope: MobileDevice
+*Main> :t Laptop      
+Laptop :: MobileDevice
+*Main> :t Laptop
+Laptop :: MobileDevice
+*Main> :t Tablet
+Tablet :: MobileDevice
+*Main> Tablet   
+
+<interactive>:11:1: error:
+    * No instance for (Show MobileDevice) arising from a use of `print'
+    * In a stmt of an interactive GHCi command: print it
+*Main> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+
+lab3_ex1.2.hs:18:1: error:
+    Multiple declarations of `MobileDevice'
+    Declared at: lab3_ex1.2.hs:6:1
+                 lab3_ex1.2.hs:18:1
+   |
+18 | data MobileDevice = Smartphone
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+lab3_ex1.2.hs:18:21: error:
+    Multiple declarations of `Smartphone'
+    Declared at: lab3_ex1.2.hs:6:21
+                 lab3_ex1.2.hs:18:21
+   |
+18 | data MobileDevice = Smartphone
+   |                     ^^^^^^^^^^
+
+lab3_ex1.2.hs:19:19: error:
+    Multiple declarations of `Laptop'
+    Declared at: lab3_ex1.2.hs:7:19
+                 lab3_ex1.2.hs:19:19
+   |
+19 |                 | Laptop
+   |                   ^^^^^^
+
+lab3_ex1.2.hs:20:19: error:
+    Multiple declarations of `Tablet'
+    Declared at: lab3_ex1.2.hs:8:19
+                 lab3_ex1.2.hs:20:19
+   |
+20 |                 | Tablet
+   |                   ^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+Ok, one module loaded.
+*Main> Laptop
+Laptop
+*Main> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+Ok, one module loaded.
+*Main> Tablet
+
+<interactive>:16:1: error:
+    * No instance for (Show (Int -> MobileDevice))
+        arising from a use of `print'
+        (maybe you haven't applied a function to enough arguments?)
+    * In a stmt of an interactive GHCi command: print it
+*Main> Tablet 3
+Tablet 3
+*Main> Tablet 333333333333333333333333
+
+<interactive>:18:8: warning: [-Woverflowed-literals]
+    Literal 333333333333333333333333 is out of the Int range -9223372036854775808..9223372036854775807
+Tablet 667921401735632213
+*Main> :l lab3_ex1.2.hs
+[1 of 1] Compiling Main             ( lab3_ex1.2.hs, interpreted )
+Ok, one module loaded.
+*Main> Tablet 6 "Model X"    
+Tablet 6 "Model X"
+
+
+
+
+Prelude> :l lab3_ex1.3
+[1 of 1] Compiling Main             ( lab3_ex1.3.hs, interpreted )
+Ok, one module loaded.
+*Main> Rosu
+Rosu   
+*Main> Smartphone Rosu
+Smartphone Rosu
+*Main> Tablet 1 "Nou" Rosu
+Tablet 1 "Nou" Rosu
+*Main> :l lab3_ex1.3      
+[1 of 1] Compiling Main             ( lab3_ex1.3.hs, interpreted )
+
+lab3_ex1.3.hs:30:11: error:
+    * The constructor `Laptop' should have 1 argument, but has been given none
+    * In the pattern: Laptop
+      In an equation for `descriere':
+          descriere Laptop = "Acesta este un laptop de culoare roz."
+   |
+30 | descriere Laptop = "Acesta este un laptop de culoare roz."
+   |           ^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex1.3
+[1 of 1] Compiling Main             ( lab3_ex1.3.hs, interpreted )
+
+lab3_ex1.3.hs:30:1: error:
+    Equations for `descriere' have different numbers of arguments
+      lab3_ex1.3.hs:30:1-64
+      lab3_ex1.3.hs:31:1-63
+   |
+30 | descriere Laptop color = "Acesta este un laptop de culoare roz."
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :l lab3_ex1.3
+[1 of 1] Compiling Main             ( lab3_ex1.3.hs, interpreted )
+Ok, one module loaded.
+*Main> descriere Tablet 2 "nou2" Rosu
+
+<interactive>:8:1: error:
+    * Couldn't match expected type `t0 -> [Char] -> Culori -> t'
+                  with actual type `[Char]'
+    * The function `descriere' is applied to four arguments,
+      but its type `MobileDevice -> [Char]' has only one
+      In the expression: descriere Tablet 2 "nou2" Rosu
+      In an equation for `it': it = descriere Tablet 2 "nou2" Rosu
+    * Relevant bindings include it :: t (bound at <interactive>:8:1)
+
+<interactive>:8:11: error:
+    * Couldn't match expected type `MobileDevice'
+                  with actual type `Int -> String -> Culori -> MobileDevice'
+    * Probable cause: `Tablet' is applied to too few arguments
+      In the first argument of `descriere', namely `Tablet'
+      In the expression: descriere Tablet 2 "nou2" Rosu
+      In an equation for `it': it = descriere Tablet 2 "nou2" Rosu
+*Main> descriere $  Tablet 2 "nou2" Rosu
+"Aceasta este o tableta mov."
+
+
+*Main> :l lab3_ex2.1
+[1 of 1] Compiling Main             ( lab3_ex2.1.hs, interpreted )
+Ok, one module loaded.
+*Main> Nod
+
+<interactive>:15:1: error:
+    * No instance for (Show (Integer -> Arb -> Arb -> Arb))
+        arising from a use of `print'
+        (maybe you haven't applied a function to enough arguments?)
+    * In a stmt of an interactive GHCi command: print it
+*Main> :l lab3_ex2.1
+[1 of 1] Compiling Main             ( lab3_ex2.1.hs, interpreted )
+Ok, one module loaded.
+*Main> Nod 1 (Nod 4 (Frunza 5) (Frunza 6)) (Nod 4 (Frunza 5) (Frunza 6))
+Nod 1 (Nod 4 (Frunza 5) (Frunza 6)) (Nod 4 (Frunza 5) (Frunza 6))
+*Main> Frunza 55
+Frunza 55
+*Main> :l lab3_ex2.2   
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:8:1: error:
+    Equations for `isBST' have different numbers of arguments
+      lab3_ex2.2.hs:8:1-25
+      lab3_ex2.2.hs:10:1-73
+  |
+8 | isBST Frunza value = True
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:7:1: error:
+    The type signature for `isBST' lacks an accompanying binding
+  |
+7 | isBST :: Arb -> Bool
+  | ^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:8:1: error:
+    Equations for `isBST' have different numbers of arguments
+      lab3_ex2.2.hs:8:1-25
+      lab3_ex2.2.hs:10:1-73
+  |
+8 | isBST Frunza value = True
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:15:39: error: parse error on input `='
+   |
+15 | isBST ((Nod value leftNode rightNode) = and (isBST leftNode) (isBST rightNode)
+   |                                       ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:15:40: error:
+    * Couldn't match expected type `Bool -> Bool'
+                  with actual type `Bool'
+    * The function `and' is applied to two arguments,
+      but its type `t0 Bool -> Bool' has only one
+      In the expression: and (isBST leftNode) (isBST rightNode)
+      In an equation for `isBST':
+          isBST (Nod value leftNode rightNode)
+            = and (isBST leftNode) (isBST rightNode)
+   |
+15 | isBST (Nod value leftNode rightNode) = and (isBST leftNode) (isBST rightNode)
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab3_ex2.2.hs:15:45: error:
+    * Couldn't match expected type `t0 Bool' with actual type `Bool'
+    * In the first argument of `and', namely `(isBST leftNode)'
+      In the expression: and (isBST leftNode) (isBST rightNode)
+      In an equation for `isBST':
+          isBST (Nod value leftNode rightNode)
+            = and (isBST leftNode) (isBST rightNode)
+   |
+15 | isBST (Nod value leftNode rightNode) = and (isBST leftNode) (isBST rightNode)
+   |                                             ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:16:40: error:
+    * Couldn't match expected type `Bool -> Bool'
+                  with actual type `Bool'
+    * The function `and' is applied to two arguments,
+      but its type `t0 Bool -> Bool' has only one
+      In the expression: and (isBST leftNode) (isBST rightNode)
+      In an equation for `isBST':
+          isBST (Nod value leftNode rightNode)
+            = and (isBST leftNode) (isBST rightNode)
+   |
+16 | isBST (Nod value leftNode rightNode) = and (isBST leftNode) (isBST rightNode)
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab3_ex2.2.hs:16:45: error:
+    * Couldn't match expected type `t0 Bool' with actual type `Bool'
+    * In the first argument of `and', namely `(isBST leftNode)'
+      In the expression: and (isBST leftNode) (isBST rightNode)
+      In an equation for `isBST':
+          isBST (Nod value leftNode rightNode)
+            = and (isBST leftNode) (isBST rightNode)
+   |
+16 | isBST (Nod value leftNode rightNode) = and (isBST leftNode) (isBST rightNode)
+   |                                             ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> isBST $ Nod 1 (Nod 4 (Frunza 5) (Frunza 6)) (Nod 4 (Frunza 5) (Frunza 6))
+False
+*Main> isBST $ Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+True
+*Main> isBST $ Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+True
+*Main> :l lab3_ex2.2                                                             
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:5:69: error: parse error on input `|'
+  |
+5 | data Arb = Frunza Integer | Nod Integer Arb Arb deriving (Show, Eq) | NodGol
+  |                                                                     ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:7:9: error: parse error on input `|'
+  |
+7 |         | NodGol
+  |         ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:7:9: error: parse error on input `|'
+  |
+7 |         | NodGol
+  |         ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+
+lab3_ex2.2.hs:7:10: error: parse error on input `|'
+  |
+7 |          | NodGol
+  |          ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main>
