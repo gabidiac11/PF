@@ -320,3 +320,518 @@ Ok, one module loaded.
 [1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
 Ok, one module loaded.
 *Main>
+
+
+Prelude> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> isBST $ Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+True
+*Main> isBST $ Nod 6 (Nod 4 (Frunza 3 (NodGol NodGol) ) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+
+<interactive>:3:23: error:
+    * Couldn't match expected type `t0 -> Arb' with actual type `Arb'
+    * The function `Frunza' is applied to two arguments,
+      but its type `Integer -> Arb' has only one
+      In the second argument of `Nod', namely
+        `(Frunza 3 (NodGol NodGol))'
+      In the second argument of `Nod', namely
+        `(Nod 4 (Frunza 3 (NodGol NodGol)) (Frunza 5))'
+
+<interactive>:3:33: error:
+    * Couldn't match expected type `Arb -> t0' with actual type `Arb'
+    * The function `NodGol' is applied to one argument,
+      but its type `Arb' has none
+      In the second argument of `Frunza', namely `(NodGol NodGol)'
+      In the second argument of `Nod', namely
+        `(Frunza 3 (NodGol NodGol))'
+*Main> isBST $ Nod 6 (Nod 4 NodGol (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+True
+*Main> isBST $ Nod 6 (Nod 7 NodGol (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+False
+*Main> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+
+lab3_ex2.3.hs:8:38: error: parse error on input `='
+  |
+8 | search (Frunza value) searchValue = (=) value searchValue
+  |                                      ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+
+lab3_ex2.3.hs:8:38: error: parse error on input `='
+  |
+8 | search (Frunza value) searchValue | (=) value searchValue = True
+  |                                      ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+
+lab3_ex2.3.hs:6:11: error:
+    Not in scope: type constructor or class `Arb'
+  |
+6 | search :: Arb -> Integer -> Bool
+  |           ^^^
+
+lab3_ex2.3.hs:7:8: error: Not in scope: data constructor `NodGol'
+  |
+7 | search NodGol = False
+  |        ^^^^^^
+
+lab3_ex2.3.hs:8:9: error: Not in scope: data constructor `Frunza'
+  |
+8 | search (Frunza value) searchValue | (==) value searchValue = True
+  |         ^^^^^^
+
+lab3_ex2.3.hs:9:9: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+  |
+9 | search (Nod value left right) searchValue | (==) value searchValue = True
+  |         ^^^
+
+lab3_ex2.3.hs:10:9: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+   |
+10 | search (Nod value left right) searchValue | (>) searchValue value = search right searchValue
+   |         ^^^
+
+lab3_ex2.3.hs:11:9: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+   |
+11 | search (Nod value left right) searchValue = search left searchValue
+   |         ^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+
+lab3_ex2.3.hs:12:1: error:
+    Equations for `search' have different numbers of arguments
+      lab3_ex2.3.hs:12:1-21
+      lab3_ex2.3.hs:13:1-65
+   |
+12 | search NodGol = False
+   | ^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+Ok, one module loaded.
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 15
+*** Exception: lab3_ex2.3.hs:(12,1)-(16,67): Non-exhaustive patterns in function search
+
+*Main> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+
+lab3_ex2.3.hs:14:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+14 | search (Nod value left right) searchValue | (==) value searchValue = True
+   | ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.3
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+Ok, one module loaded.
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 15
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 100
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 3
+True
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 1
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 2
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 9
+True
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 4
+True
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 5
+True
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 2
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 1
+False
+*Main> search (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 0
+False
+*Main> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+
+lab3_ex2.4.hs:12:1: error:
+    The type signature for `insert' lacks an accompanying binding
+   |
+12 | insert :: Arb -> Integer -> Arb
+   | ^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+
+lab3_ex2.4.hs:18:67: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (>) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (>) valueToInsert > value
+   |
+18 | insert (Nod value left right) valueToInsert | (>) valueToInsert > value  = Nod value left (insert right valueToInsert)
+   |                                                                   ^^^^^
+
+lab3_ex2.4.hs:19:68: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (<=) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (<=) valueToInsert > value
+   |
+19 | insert (Nod value left right) valueToInsert | (<=) valueToInsert > value  = Nod value (insert left valueToInsert) right
+   |                                                                    ^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+
+lab3_ex2.4.hs:18:67: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (>) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (>) valueToInsert > value
+   |
+18 | insert (Nod value left right) valueToInsert | (>) valueToInsert > value  = Nod value left (insert right valueToInsert)
+   |                                                                   ^^^^^
+
+lab3_ex2.4.hs:19:68: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (<=) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (<=) valueToInsert > value
+   |
+19 | insert (Nod value left right) valueToInsert | (<=) valueToInsert > value  = Nod value (insert left valueToInsert) right
+   |                                                                    ^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+
+lab3_ex2.4.hs:18:67: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (>) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (>) valueToInsert > value
+   |
+18 | insert (Nod value left right) valueToInsert | (>) valueToInsert > value  = Nod value left (insert right valueToInsert)
+   |                                                                   ^^^^^
+
+lab3_ex2.4.hs:19:68: error:
+    * Couldn't match expected type `Integer -> Bool'
+                  with actual type `Integer'
+    * In the second argument of `(>)', namely `value'
+      In the expression: (<=) valueToInsert > value
+      In a stmt of a pattern guard for
+                     an equation for `insert':
+        (<=) valueToInsert > value
+   |
+19 | insert (Nod value left right) valueToInsert | (<=) valueToInsert > value  = Nod value (insert left valueToInsert) right
+   |                                                                    ^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+Ok, one module loaded.
+*Main> insert (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 7
+Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Nod 8 (Frunza 7) NodGol) (Frunza 10))
+*Main> insert (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) 100
+Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Nod 10 NodGol (Frunza 100)))
+*Main> insert (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) -100
+
+<interactive>:32:1: error:
+    * No instance for (Num (Integer -> Arb)) arising from a use of `-'
+        (maybe you haven't applied a function to enough arguments?)
+    * In the expression:
+        insert
+          (Nod
+             6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10)))
+          - 100
+      In an equation for `it':
+          it
+            = insert
+                (Nod
+                   6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10)))
+                - 100
+*Main> insert (Nod 6 (Nod 4 (Frunza 3) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))) (-100)
+Nod 6 (Nod 4 (Nod 3 (Frunza (-100)) NodGol) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10))
+*Main> :l lab3_ex2.2.hs
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Frunza (-100)) NodGol) (Frunza 5)) (Nod 9 (Frunza 8) (Frunza 10)))
+
+<interactive>:35:29: error:
+    Data constructor not in scope: Frunza :: t0 -> Arb
+
+<interactive>:35:53: error:
+    Data constructor not in scope: Frunza :: t1 -> Arb
+
+<interactive>:35:72: error:
+    Data constructor not in scope: Frunza :: t2 -> Arb
+
+<interactive>:35:83: error:
+    Data constructor not in scope: Frunza :: t3 -> Arb
+*Main> isBST Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+
+<interactive>:36:1: error:
+    * Couldn't match expected type `t0 -> Arb -> Arb -> t'
+                  with actual type `Bool'
+    * The function `isBST' is applied to four arguments,
+      but its type `Arb -> Bool' has only one
+      In the expression:
+        isBST
+          Nod 6
+          (Nod
+             4 (Nod 3 (Nod (- 100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol))
+          (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+      In an equation for `it':
+          it
+            = isBST
+                Nod 6
+                (Nod
+                   4 (Nod 3 (Nod (- 100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol))
+                (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+    * Relevant bindings include it :: t (bound at <interactive>:36:1)
+
+<interactive>:36:7: error:
+    * Couldn't match expected type `Arb'
+                  with actual type `Integer -> Arb -> Arb -> Arb'
+    * Probable cause: `Nod' is applied to too few arguments
+      In the first argument of `isBST', namely `Nod'
+      In the expression:
+        isBST
+          Nod 6
+          (Nod
+             4 (Nod 3 (Nod (- 100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol))
+          (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+      In an equation for `it':
+          it
+            = isBST
+                Nod 6
+                (Nod
+                   4 (Nod 3 (Nod (- 100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol))
+                (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+
+<interactive>:37:138: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+True
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+False
+*Main> :l lab3_ex2.3.hs
+[1 of 1] Compiling Main             ( lab3_ex2.3.hs, interpreted )
+Ok, one module loaded.
+*Main> search (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 4
+True
+*Main> search (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 200
+False
+*Main> search (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 8
+True
+*Main> 5
+5
+*Main> search (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 5
+True
+*Main> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+Ok, one module loaded.
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 5
+Nod 6 (Nod 4 (Nod 3 (Nod 100 NodGol NodGol) NodGol) (Nod 5 (Nod 5 NodGol NodGol) NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) 89
+Nod 6 (Nod 4 (Nod 3 (Nod 100 NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol (Nod 89 NodGol NodGol)))
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-100)
+Nod 6 (Nod 4 (Nod 3 (Nod 100 (Nod (-100) NodGol NodGol) NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+Nod 6 (Nod 4 (Nod 3 (Nod 100 (Nod (-101) NodGol NodGol) NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+Nod 6 (Nod 4 (Nod 3 (Nod 100 (Nod (-101) NodGol NodGol) NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+
+<interactive>:52:1: error: Variable not in scope: isBST :: Arb -> t
+*Main> :l lab3_ex2.2
+[1 of 1] Compiling Main             ( lab3_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+False
+*Main> isBST (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+True
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) -101
+
+<interactive>:56:1: error:
+    Variable not in scope: insert :: Arb -> a
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+
+<interactive>:57:1: error:
+    Variable not in scope: insert :: Arb -> t0 -> t
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+
+<interactive>:58:1: error:
+    Variable not in scope: insert :: Arb -> t0 -> t
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+
+<interactive>:59:1: error:
+    Variable not in scope: insert :: Arb -> t0 -> t
+*Main> :l lab3_ex2.5
+[1 of 1] Compiling Main             ( lab3_ex2.5.hs, interpreted )
+
+lab3_ex2.5.hs:6:1: error:
+    The type signature for `maxim' lacks an accompanying binding
+  |
+6 | maxim :: Arb -> Integer
+  | ^^^^^
+
+lab3_ex2.5.hs:6:10: error:
+    Not in scope: type constructor or class `Arb'
+  |
+6 | maxim :: Arb -> Integer
+  |          ^^^
+
+lab3_ex2.5.hs:7:1: error:
+    The type signature for `minim' lacks an accompanying binding
+  |
+7 | minim :: Arb -> Integer
+  | ^^^^^
+
+lab3_ex2.5.hs:7:10: error:
+    Not in scope: type constructor or class `Arb'
+  |
+7 | minim :: Arb -> Integer
+  |          ^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.4
+[1 of 1] Compiling Main             ( lab3_ex2.4.hs, interpreted )
+Ok, one module loaded.
+*Main> insert (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))) (-101)
+Nod 6 (Nod 4 (Nod 3 (Nod (-100) (Nod (-101) NodGol NodGol) NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol))
+*Main> :l lab3_ex2.5
+[1 of 1] Compiling Main             ( lab3_ex2.5.hs, interpreted )
+Ok, one module loaded.
+*Main> maxim (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+-100
+*Main> :l lab3_ex2.5
+[1 of 1] Compiling Main             ( lab3_ex2.5.hs, interpreted )
+Ok, one module loaded.
+*Main> maxim (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+10
+*Main> minim (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+-100
+*Main> :l lab3_ex2.6
+[1 of 1] Compiling Main             ( lab3_ex2.6.hs, interpreted )
+
+lab3_ex2.6.hs:5:1: error:
+    The type signature for `removeMax' lacks an accompanying binding
+  |
+5 | removeMax :: Arb -> Arb
+  | ^^^^^^^^^
+
+lab3_ex2.6.hs:5:14: error:
+    Not in scope: type constructor or class `Arb'
+  |
+5 | removeMax :: Arb -> Arb
+  |              ^^^
+
+lab3_ex2.6.hs:5:21: error:
+    Not in scope: type constructor or class `Arb'
+  |
+5 | removeMax :: Arb -> Arb
+  |                     ^^^
+
+lab3_ex2.6.hs:6:7: error: Not in scope: data constructor `NodGol'
+  |
+6 | maxim NodGol = NodGol
+  |       ^^^^^^
+
+lab3_ex2.6.hs:7:8: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+  |
+7 | maxim (Nod valoare NodGol NodGol) = NodGol
+  |        ^^^
+
+lab3_ex2.6.hs:7:20: error: Not in scope: data constructor `NodGol'
+  |
+7 | maxim (Nod valoare NodGol NodGol) = NodGol
+  |                    ^^^^^^
+
+lab3_ex2.6.hs:7:27: error: Not in scope: data constructor `NodGol'
+  |
+7 | maxim (Nod valoare NodGol NodGol) = NodGol
+  |                           ^^^^^^
+
+lab3_ex2.6.hs:8:8: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+  |
+8 | maxim (Nod valoare left NodGol) = left
+  |        ^^^
+
+lab3_ex2.6.hs:8:25: error: Not in scope: data constructor `NodGol'
+  |
+8 | maxim (Nod valoare left NodGol) = left
+  |                         ^^^^^^
+
+lab3_ex2.6.hs:9:8: error:
+    Not in scope: data constructor `Nod'
+    Perhaps you meant variable `mod' (imported from Prelude)
+  |
+9 | maxim (Nod valoare _ right) = maxim right
+  |        ^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.6
+[1 of 1] Compiling Main             ( lab3_ex2.6.hs, interpreted )
+
+lab3_ex2.6.hs:9:1: error:
+    The type signature for `removeMax' lacks an accompanying binding
+  |
+9 | removeMax :: Arb -> Arb
+  | ^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.6
+[1 of 1] Compiling Main             ( lab3_ex2.6.hs, interpreted )
+Ok, one module loaded.
+*Main> removeMax (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+NodGol
+*Main> :l lab3_ex2.6
+[1 of 1] Compiling Main             ( lab3_ex2.6.hs, interpreted )
+
+lab3_ex2.6.hs:13:48: error:
+    * Found hole: _ :: Arb
+    * In the second argument of `Nod', namely `_'
+      In the expression: (Nod valoare _ (removeMax right))
+      In an equation for `removeMax':
+          removeMax (Nod valoare _ right) = (Nod valoare _ (removeMax right))
+    * Relevant bindings include
+        right :: Arb (bound at lab3_ex2.6.hs:13:26)
+        valoare :: Integer (bound at lab3_ex2.6.hs:13:16)
+        removeMax :: Arb -> Arb (bound at lab3_ex2.6.hs:10:1)
+      Valid hole fits include
+        right :: Arb (bound at lab3_ex2.6.hs:13:26)
+        NodGol :: Arb (defined at lab3_ex2.6.hs:6:12)
+   |
+13 | removeMax (Nod valoare _ right) = (Nod valoare _ (removeMax right))
+   |                                                ^
+Failed, no modules loaded.
+Prelude> :l lab3_ex2.6
+[1 of 1] Compiling Main             ( lab3_ex2.6.hs, interpreted )
+Ok, one module loaded.
+*Main> removeMax (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) NodGol)
+*Main> removeMax (Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) (Nod 10 NodGol NodGol)))
+Nod 6 (Nod 4 (Nod 3 (Nod (-100) NodGol NodGol) NodGol) (Nod 5 NodGol NodGol)) (Nod 9 (Nod 8 NodGol NodGol) NodGol)
+*Main>
