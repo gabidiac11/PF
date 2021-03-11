@@ -1,0 +1,170 @@
+ghci
+
+Prelude> :l pf_lab4_ex1.1
+[1 of 1] Compiling Main             ( pf_lab4_ex1.1.hs, interpreted )
+
+pf_lab4_ex1.1.hs:9:11: error:
+    * Couldn't match expected type `Int'   
+                  with actual type `(Int -> Int -> Int, Int -> Int -> Int,
+                                     Int -> Int -> Int)'
+    * In the pattern: (x, y, z)
+      In an equation for `addThreeC': addThreeC (x, y, z) = x + y + z     
+  |
+9 | addThreeC (x,y,z) = x + y + z
+  |           ^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf_lab4_ex1.1
+[1 of 1] Compiling Main             ( pf_lab4_ex1.1.hs, interpreted )
+Ok, one module loaded.
+*Main> addThreeC 1 2 3
+6
+*Main> addThree 1 2 3 
+
+<interactive>:4:1: error:
+    * Couldn't match expected type `t0 -> t1 -> t'
+                  with actual type `Int'
+    * The function `addThree' is applied to three arguments,
+      but its type `(Int, Int, Int) -> Int' has only one
+      In the expression: addThree 1 2 3
+      In an equation for `it': it = addThree 1 2 3
+    * Relevant bindings include it :: t (bound at <interactive>:4:1)
+*Main> addThree (1 2 3)
+
+<interactive>:5:11: error:
+    * No instance for (Num (Integer -> Integer -> (Int, Int, Int)))
+        arising from the literal `1'
+        (maybe you haven't applied a function to enough arguments?)
+    * In the expression: 1
+      In the first argument of `addThree', namely `(1 2 3)'
+      In the expression: addThree (1 2 3)
+*Main> addThree (1, 2, 3)
+6
+*Main> :l pf_lab4_ex2.1  
+[1 of 1] Compiling Main             ( pf_lab4_ex2.1.hs, interpreted )
+Ok, one module loaded.
+*Main> proccess (1, 2) 3
+
+<interactive>:8:1: error:
+    * Variable not in scope: proccess :: (a0, b0) -> t0 -> t
+    * Perhaps you meant `process' (line 6)
+*Main> proccess (* 2) 3 
+
+<interactive>:9:1: error:
+    * Variable not in scope: proccess :: (a0 -> a0) -> t0 -> t
+    * Perhaps you meant `process' (line 6)
+*Main> proccess (+ 2) 3
+
+<interactive>:10:1: error:
+    * Variable not in scope: proccess :: (a0 -> a0) -> t0 -> t
+    * Perhaps you meant `process' (line 6)
+*Main> proccess (+ 2) 3
+
+<interactive>:11:1: error:
+    * Variable not in scope: proccess :: (a0 -> a0) -> t0 -> t
+    * Perhaps you meant `process' (line 6)
+*Main> process (+ 2) 4 
+6
+*Main> process (+ 2) 4 
+6
+*Main> process (* 2) 4
+8
+*Main> process (* 2) 4
+8
+*Main> :l pf_lab4_ex2.2
+[1 of 1] Compiling Main             ( pf_lab4_ex2.2.hs, interpreted )
+Ok, one module loaded.
+*Main> applyToRange (+1) 0 10
+66
+*Main> applyToRange (+0) 0 10
+55
+*Main> applyToRange (+1) 0 10
+66
+*Main> applyToRange (+3) 0 10
+88
+*Main> :l pf_lab4_ex2.3      
+[1 of 1] Compiling Main             ( pf_lab4_ex2.3.hs, interpreted )
+Ok, one module loaded.
+*Main> compunere (+) (-)
+
+<interactive>:22:1: error:
+    * Non type-variable argument in the constraint: Num (a -> a)
+      (Use FlexibleContexts to permit this)
+    * When checking the inferred type
+        it :: forall a. (Num a, Num (a -> a)) => a -> (a -> a) -> a -> a
+*Main> compunere (+1) (-1)
+
+<interactive>:23:1: error:
+    * Non type-variable argument in the constraint: Num (t3 -> t2)
+      (Use FlexibleContexts to permit this)
+    * When checking the inferred type
+        it :: forall t2 t3. (Num t2, Num (t3 -> t2)) => t3 -> t2
+*Main> compunere + +      
+
+<interactive>:24:13: error: parse error on input `+'
+*Main> compunere (+) (+)
+
+<interactive>:25:1: error:
+    * Non type-variable argument in the constraint: Num (a -> a)
+      (Use FlexibleContexts to permit this)
+    * When checking the inferred type
+        it :: forall a. (Num a, Num (a -> a)) => a -> (a -> a) -> a -> a
+*Main> :l pf_lab4_ex2.3      
+[1 of 1] Compiling Main             ( pf_lab4_ex2.3.hs, interpreted )
+Ok, one module loaded.
+*Main> compunere test test
+
+<interactive>:27:1: error:
+    * No instance for (Show (Int -> Int)) arising from a use of `print'
+        (maybe you haven't applied a function to enough arguments?)
+    * In a stmt of an interactive GHCi command: print it
+*Main> compunere (test 3) test
+
+<interactive>:28:12: error:
+    * Couldn't match expected type `Int -> t2' with actual type `Int'
+    * Possible cause: `test' is applied to too many arguments
+      In the first argument of `compunere', namely `(test 3)'
+      In the expression: compunere (test 3) test
+      In an equation for `it': it = compunere (test 3) test
+    * Relevant bindings include
+        it :: Int -> t2 (bound at <interactive>:28:1)
+*Main> compunere (test 3) (test 3)
+
+<interactive>:29:12: error:
+    * Couldn't match expected type `t10 -> t2' with actual type `Int'
+    * Possible cause: `test' is applied to too many arguments
+      In the first argument of `compunere', namely `(test 3)'
+      In the expression: compunere (test 3) (test 3)
+      In an equation for `it': it = compunere (test 3) (test 3)
+    * Relevant bindings include
+        it :: t3 -> t2 (bound at <interactive>:29:1)
+
+<interactive>:29:21: error:
+    * Couldn't match expected type `t3 -> t10' with actual type `Int'
+    * Possible cause: `test' is applied to too many arguments
+      In the second argument of `compunere', namely `(test 3)'
+      In the expression: compunere (test 3) (test 3)
+      In an equation for `it': it = compunere (test 3) (test 3)
+    * Relevant bindings include
+        it :: t3 -> t2 (bound at <interactive>:29:1)
+*Main> (compunere (test 3) (test 3)) 4
+
+<interactive>:30:13: error:
+    * Couldn't match expected type `t10 -> t2' with actual type `Int'
+    * Possible cause: `test' is applied to too many arguments
+      In the first argument of `compunere', namely `(test 3)'
+      In the expression: (compunere (test 3) (test 3)) 4
+      In an equation for `it': it = (compunere (test 3) (test 3)) 4
+    * Relevant bindings include it :: t2 (bound at <interactive>:30:1)
+
+<interactive>:30:22: error:
+    * Couldn't match expected type `t30 -> t10' with actual type `Int'
+    * Possible cause: `test' is applied to too many arguments
+      In the second argument of `compunere', namely `(test 3)'
+      In the expression: (compunere (test 3) (test 3)) 4
+      In an equation for `it': it = (compunere (test 3) (test 3)) 4
+*Main> (compunere test test) 4
+16
+*Main> (compunere test test) 4
+16
+*Main> (compunere test test) 200000000
+800000000
