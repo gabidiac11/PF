@@ -1,0 +1,30 @@
+(Nod 6 
+    (Nod 4 
+        (Nod 3 
+            NodGol
+            NodGol
+        ) 
+        (Nod 5 NodGol NodGol)
+    ) 
+    
+    (Nod 9 
+        (Nod 8 NodGol NodGol) 
+        (Nod 10 NodGol NodGol)
+    )
+)
+
+
+(Nod 6 
+    (Nod 4 
+        (Nod 3 
+            NodGol
+            NodGol
+        ) 
+        (Nod 5 NodGol NodGol)
+    ) 
+    
+    (Nod 9 
+        (Nod 8 NodGol NodGol) 
+        (Nod 10 NodGol NodGol)
+    )
+)
