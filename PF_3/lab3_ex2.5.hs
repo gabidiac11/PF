@@ -19,4 +19,3 @@ maxim NodGol = 0
 maxim (Nod valoare NodGol NodGol) = valoare
 maxim (Nod valoare left NodGol) = valoare
 maxim (Nod valoare _ right) = maxim right 
-

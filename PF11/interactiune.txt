@@ -1,0 +1,675 @@
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:6:23: error:
+    Not in scope: type variable `dering'
+    Perhaps you meant one of these:
+      type constructor or class `Ordering' (imported from Prelude),
+      type constructor or class `String' (imported from Prelude)
+  |
+6 |      | Lambda Id Term dering (Show Eq) -- (?x.x)
+  |                       ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:6:23: error:
+    Not in scope: type variable `dering'
+    Perhaps you meant one of these:
+      type constructor or class `Ordering' (imported from Prelude),
+      type constructor or class `String' (imported from Prelude)
+  |
+6 |      | Lambda Id Term dering (Show, Eq) -- (?x.x)
+  |                       ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:9:15: error: Variable not in scope: x :: Id
+  |
+9 | var1 = Lambda x (Var x)
+  |               ^
+
+pf11.hs:9:22: error: Variable not in scope: x :: Id
+  |
+9 | var1 = Lambda x (Var x)
+  |                      ^
+Failed, no modules loaded.
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> :t var1
+var1 :: Term
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> test2
+Var "x"
+*Main> test1
+Var "y"
+*Main> test2
+Var "x"
+*Main> test3
+App (Var "x") (Var "z")
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> test4
+App (Var "z") (Var "x")
+*Main> test5
+Lambda "x" (App (Var "y") (Var "x"))
+*Main> test6
+Lambda "y" (App (Var "y") (Lambda "z" (Var "z")))
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> :t var1
+var1 :: Term
+*Main> var1
+Lambda "x" (Lambda "y" (Var "x"))
+*Main> :t var1
+var1 :: Term
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:52:25: error:
+    * Couldn't match expected type `Term -> Term'
+                  with actual type `Term'
+    * In the second argument of `(==)', namely `varTest2'
+      In the expression: varTest1 == varTest2
+      In an equation for `varTestEq': varTestEq = varTest1 == varTest2
+   |
+52 | varTestEq = varTest1 == varTest2
+   |                         ^^^^^^^^
+Failed, no modules loaded.
+Prelude> varTest1 == varTest2
+
+<interactive>:21:1: error: Variable not in scope: varTest1
+
+<interactive>:21:13: error: Variable not in scope: varTest2
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:52:26: error:
+    * Couldn't match expected type `Term -> Term'
+                  with actual type `Term'
+    * In the second argument of `(==)', namely `varTest2'
+      In the expression: (varTest1 == varTest2)
+      In an equation for `varTestEq': varTestEq = (varTest1 == varTest2)
+   |
+52 | varTestEq = (varTest1 == varTest2)
+   |                          ^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> varTest1 == varTest2
+
+<interactive>:24:13: error:
+    * Couldn't match expected type `Term -> Term'
+                  with actual type `Term'
+    * In the second argument of `(==)', namely `varTest2'
+      In the expression: varTest1 == varTest2
+      In an equation for `it': it = varTest1 == varTest2
+*Main> 1 == 2
+False
+*Main> subst "y" (Var "x")
+
+<interactive>:26:1: error:
+    * No instance for (Show (Term -> Term))
+        arising from a use of `print'
+        (maybe you haven't applied a function to enough arguments?)
+    * In a stmt of an interactive GHCi command: print it
+*Main> (subst "y" (Var "x"))
+
+<interactive>:27:1: error:
+    * No instance for (Show (Term -> Term))
+        arising from a use of `print'
+        (maybe you haven't applied a function to enough arguments?)
+    * In a stmt of an interactive GHCi command: print it
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> varTest1 == varTest2
+True
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> varTestEq
+True
+*Main> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:63:32: error:
+    * Couldn't match type `Char' with `[Char]'
+      Expected type: [Id]
+        Actual type: [Char]
+    * In the expression: hd ++ (remove id tl)
+      In an equation for `remove':
+          remove id (hd : tl)
+            | id == hd = remove id tl
+            | True = hd ++ (remove id tl)
+   |
+63 |                   | True     = hd ++ (remove id tl)
+   |                                ^^^^^^^^^^^^^^^^^^^^
+
+pf11.hs:63:39: error:
+    * Couldn't match type `[Char]' with `Char'
+      Expected type: [Char]
+        Actual type: [Id]
+    * In the second argument of `(++)', namely `(remove id tl)'
+      In the expression: hd ++ (remove id tl)
+      In an equation for `remove':
+          remove id (hd : tl)
+            | id == hd = remove id tl
+            | True = hd ++ (remove id tl)
+   |
+63 |                   | True     = hd ++ (remove id tl)
+   |                                       ^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11.hs
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> remove "z" ["z", "s", "z", "a", "l", "z", "a", "m"]
+["s","a","l","a","m"]
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> free var1
+[]
+*Main> var1
+Lambda "x" (Lambda "y" (Var "x"))
+*Main> free (Lambda "x" (Lambda "y" (Var "z")))
+["z"]
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> vars var1
+["x","y","x"]
+*Main> var1
+Lambda "x" (Lambda "y" (Var "x"))
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> fresh' ["s"] 2
+"n2"
+*Main> fresh' ["s", "n2"] 2
+"n3"
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:96:22: error:
+    * Couldn't match expected type `Int' with actual type `[Id]'
+    * In the second argument of fresh', namely `ids'
+      In the expression: fresh' 0 ids
+      In an equation for `fresh': fresh ids = fresh' 0 ids
+   |
+96 | fresh ids = fresh' 0 ids
+   |                      ^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:96:23: error:
+    * Couldn't match expected type `Int' with actual type `[Id]'
+    * In the second argument of fresh', namely `ids'
+      In the expression: (fresh' 0 ids)
+      In an equation for `fresh': fresh ids = (fresh' 0 ids)
+   |
+96 | fresh ids = (fresh' 0 ids)
+   |                       ^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> fresh ["n1", "n100"]
+"n0"
+*Main> fresh ["n1", "n100", "n0"]
+"n2"
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:109:44: error: parse error on input `True'
+    |
+109 |                                          | True                   = (Lambda id' (casubst id term term' (avoid ++ [id'])))
+    |                                            ^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:108:44: error: parse error on input `True'
+    |
+108 |                                          | True                   = (Lambda id' (casubst id term term' (avoid ++ [id'])))
+    |                                            ^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:107:73: error:
+    * Couldn't match expected type `Term'
+                  with actual type `[Id] -> Term'
+    * Probable cause: `casubst' is applied to too few arguments
+      In the expression:
+        (casubst
+           id term
+           (Lambda id'' (casubst id' (Var id'') term' (avoid ++ [id'']))))
+      In the expression:
+        let id'' = fresh avoid
+        in
+          (casubst
+             id term
+             (Lambda id'' (casubst id' (Var id'') term' (avoid ++ [id'']))))
+      In an equation for `casubst':
+          casubst id term (Lambda id' term') avoid
+            | id == id' = (Lambda id' term')
+            | id' `elem` (free term)
+            = let id'' = fresh avoid
+              in
+                (casubst
+                   id term
+                   (Lambda id'' (casubst id' (Var id'') term' (avoid ++ [id'']))))
+            | True = Lambda id' (casubst id term term' (avoid ++ [id']))
+    |
+107 |                                                                     in (casubst id term (Lambda id'' (casubst id' (Var id'') term' (avoid ++ [id'']) )))
+    |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex7Test1_result
+Lambda "n0" (Var "x")
+*Main> ex7Test1
+Lambda "x" (Var "y")
+*Main> ex7Test1_result
+Lambda "n0" (Var "x")
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex7_prevTest1
+Var "n0"
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex7Test1_result
+Lambda "n0" (Var "x")
+*Main> ex7_prevTest1
+Var "y"
+*Main> ex7_prevTest2
+Var "x"
+*Main> ex7_prevTest3
+App (Var "x") (Var "z")
+*Main> ex7_prevTest4
+App (Var "z") (Var "x")
+*Main> ex7_prevTest5
+Lambda "x" (App (Var "y") (Var "x"))
+*Main> ex7_prevTest6
+Lambda "y" (App (Var "y") (Lambda "z" (Var "z")))
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:162:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+    |
+162 | x = Var "x"
+    | ^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:156:35: error:
+    * Variable not in scope: term2' :: Term
+    * Perhaps you meant one of these:
+        term' (line 156), `term2' (line 166), `term' (line 154)
+    |
+156 |     Just term' -> Just (Lambda id term2')
+    |                                   ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:152:39: error:
+    * Couldn't match expected type `[Id]' with actual type `Term'
+    * In the second argument of reduce1', namely term2'
+      In the expression: reduce1' term1 term2'
+      In a case alternative: Just term2' -> reduce1' term1 term2'
+    |
+152 |         Just term2' -> reduce1' term1 term2'
+    |                                       ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:152:24: error:
+    * Couldn't match expected type `[Id] -> Maybe Term'
+                  with actual type `Maybe Term'
+    * The function reduce1' is applied to three arguments,
+      but its type `Term -> [Id] -> Maybe Term' has only two
+      In the expression: reduce1' term1 term2' (avoid ++ (vars term2'))
+      In a case alternative:
+          Just term2' -> reduce1' term1 term2' (avoid ++ (vars term2'))
+    |
+152 |         Just term2' -> reduce1' term1 term2' (avoid ++ (vars term2'))
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pf11.hs:152:39: error:
+    * Couldn't match expected type `[Id]' with actual type `Term'
+    * In the second argument of reduce1', namely term2'
+      In the expression: reduce1' term1 term2' (avoid ++ (vars term2'))
+      In a case alternative:
+          Just term2' -> reduce1' term1 term2' (avoid ++ (vars term2'))
+    |
+152 |         Just term2' -> reduce1' term1 term2' (avoid ++ (vars term2'))
+    |                                       ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex1
+Just (Lambda "x" (Var "x"))
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex1
+Nothing
+*Main> ex2
+Just (Lambda "x" (Var "x"))
+*Main> ex3
+Just (Lambda "y" (Lambda "x" (Lambda "x" (Var "x"))))
+*Main> ex4
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> ex1
+Nothing
+*Main> ex2
+Just (Lambda "x" (Var "x"))
+*Main> ex3
+Just (Lambda "y" (Lambda "x" (Lambda "x" (Var "x"))))
+*Main> ex4
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main> term4
+App (Lambda "y" (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))) (Lambda "x" (Var "x"))
+*Main> term4
+App (Lambda "y" (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))) (Lambda "x" (Var "x"))
+*Main> ex4
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:173:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+173 | Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:173:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+173 | Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:173:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+173 | Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:173:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+173 | Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:150:20: error:
+    Variable not in scope: trace :: [Char] -> Maybe a0 -> Maybe Term
+    |
+150 |         Nothing -> trace ("myfun 1") Nothing
+    |                    ^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error:
+    The type signature for `trace' lacks an accompanying binding
+    |
+144 | trace :: String -> a -> a
+    | ^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:145:21: error:
+    Variable not in scope: unsafePerformIO :: m0 a -> a
+    |
+145 | trace string expr = unsafePerformIO $ do
+    |                     ^^^^^^^^^^^^^^^
+
+pf11.hs:146:5: error:
+    * Variable not in scope: traceIO :: String -> m0 a0
+    * Perhaps you meant `trace' (line 145)
+    |
+146 |     traceIO string
+    |     ^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug.Trace
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude> import Debug
+
+<no location info>: error:
+    Could not load module `Debug'
+    It is a member of the hidden package `ghc-8.10.4'.
+    You can run `:set -package ghc' to expose it.
+    (Note: this unloads all the modules in the current scope.)
+Prelude> :set -package Debug
+cannot satisfy -package Debug
+    (use -v for more information)
+Prelude> :set -package ghc
+package flags have changed, resetting and loading new packages...
+Prelude> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude> import Debug
+Prelude Debug> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude Debug> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug.Trace
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude Debug> :m + Debug.Trace
+Prelude Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+
+pf11.hs:144:1: error: parse error on input `import'
+    |
+144 | import Debug.Trace
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main Debug Debug.Trace> ex4
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main Debug Debug.Trace> ex4
+myfun 6
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main Debug Debug.Trace> ex4
+trace-reduce1' 6
+Just (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))
+*Main Debug Debug.Trace> term4
+App (Lambda "y" (Lambda "x" (App (Lambda "x" (Var "x")) (Lambda "x" (Var "x"))))) (Lambda "x" (Var "x"))
+*Main Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main Debug Debug.Trace> ex9TermTest
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 1
+Var "y"
+*Main Debug Debug.Trace> :l pf11
+[1 of 1] Compiling Main             ( pf11.hs, interpreted )
+Ok, one module loaded.
+*Main Debug Debug.Trace> reduceForExample
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+App (Lambda "x" (App (Var "x") (Var "x"))) (Lambda "x" (App (Var "x") (Var "x")))
+*Main Debug Debug.Trace>
