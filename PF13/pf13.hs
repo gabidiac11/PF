@@ -1,3 +1,6 @@
+-- PF_11_START************************************************************************************************************************************************************|
+-- ***********************************************************************************************************************************************************************|
+
 import Debug.Trace
 {-- definim un sinonim pentru String, numit Id --}
 type Id = String
@@ -143,19 +146,19 @@ ex7_prevTest6 = casubstcall "x" (Lambda "z" (Var "z")) (Lambda "y" (App (Var "y"
 -- parametru si ın acest caz ıntoarce termenul rezultat (protejat cu constructorul Just) sau
 -- ıntoarce Nothing daca nu exista nicio beta-reducere care se poate aplica.
 
-
 reduce1' :: Term -> [Id] -> Maybe Term
-reduce1' (Var id') _ = trace ("trace-reduce1' 1") ( Nothing)
+reduce1' (Var id') _ = trace ("t_r1" ++ (show (Var id')) ) ( Nothing)
+-- REDUCERE RADACINA
 reduce1' (App (Lambda id term) term') avoid = 
-   trace ("trace-reduce1' 6") ( Just (casubst id term' term avoid) ) --beta-reducere propriu-zisa
-reduce1' (App term1 term2) avoid = case reduce1' term1 avoid of 
-    Nothing -> case reduce1' term2 avoid of
-        Nothing -> trace ("trace-reduce1' 1") Nothing
-        Just term2' -> trace ("trace-reduce1' 2") (Just (App term1 term2'))
-    Just term1' -> trace ("trace-reduce1' 3") (Just (App term1' term2))
+   trace ("t_r6" ++ (show (App (Lambda id term) term'))    ) ( Just (casubst id term' term avoid) ) --beta-reducere propriu-zisa
+reduce1' (App term1 term2) avoid = case reduce1' term1 avoid of -- REDUCERE STANGA
+    Nothing -> case reduce1' term2 avoid of -- REDUCERE DREAPTA
+        Nothing -> trace ("t_r1" ++ (show (App term1 term2)) ) Nothing
+        Just term2' -> trace ("t_r2" ++ (show (App term1 term2)) ) (Just (App term1 term2'))
+    Just term1' -> trace ("t_r3" ++ (show (App term1 term2)) ) (Just (App term1' term2))
 reduce1' (Lambda id term) avoid = case reduce1' term avoid of
-    Nothing -> Nothing
-    Just term' -> trace ("trace-reduce1' 4") (Just (Lambda id term'))
+    Nothing -> trace ("t_r4" ++ (show (Lambda id term)) ) Nothing
+    Just term' -> trace ("t_r5" ++ (show (Lambda id term)) ) (Just (Lambda id term'))
 
 reduce1 :: Term -> Maybe Term
 reduce1 t = reduce1' t (vars t)
@@ -261,3 +264,100 @@ testb4 = reduceForExample100 (App (App tOR tFALSE) tTRUE)
 
 testb5 = reduceForExample100 (App tNOT tFALSE)
 testb6 = reduceForExample100 (App tNOT tTRUE)
+
+-- PF_11_END************************************************************************************************************************************************************|
+-- ***********************************************************************************************************************************************************************|
+
+--Exercitiul 0.1. Reamintim functiile reduce1 si reduce1’:
+-- Intrebare: Care este strategia de evaluare implementata mai sus? Testati strategia pe exemplele urmatoare:
+
+-- 1.(λx1.x1) (λx2.x2) (λz.(λx3.x3) z);
+exB_entity1 = App (Lambda "x1" (Var "x1")) 
+                  (
+                    App 
+                    (Lambda "x2" (Var "x2")) 
+                    (
+                        Lambda "z" 
+                        (
+                            App 
+                            (Lambda "x3" (Var "x3"))  
+                            (Var "z")
+                        )
+                    )
+                  )
+
+-- reducere in 'Normal Order', prima data este tradata reducerea din radacina, care functioneaza prin urmatorul matching: (App (Lambda id term) term')
+-- Dupa care se trateaza cazul: (App term1 term2), de unde mai intai se evalueza (si eventual reduc) term1 si dupa care term2
+testExB_1 = reduceForExample100 exB_entity1
+
+-----------------------------------------------------
+-- 2.(λx1.λx2.x2) (λx.x) (λy.y).
+exB_entity2 = App 
+                (Lambda "x1" (Lambda "x2" (Var "x2"))) 
+                (App 
+                    (Lambda "x" (Var "x")) 
+                    (Lambda "y" (Var "y"))
+                )
+
+testExB_2 = reduceForExample100 exB_entity2
+
+
+
+{-
+    Exercitiul 0.2. Pornind de la implementarea strategiei de la Exercitiul 0.1implementati
+strategia call-by-name (CBN). Reamintim ca pentru aceasta strategie nu sunt permise
+reducerile ın interiorul unei lambda-abstractii. Testati implementarea strategiei peste
+exemplele de la Exercitiul 0.1. Puteti identifica un avantaj al strategiei CBN?
+-}
+
+reduce2' :: Term -> [Id] -> Maybe Term
+reduce2' (Var id') _ = trace ("CBN1" ++ (show (Var id')) ) ( Nothing)
+-- REDUCERE RADACINA
+reduce2' (App (Lambda id term) term') avoid = 
+   trace ("CBN6" ++ (show (App (Lambda id term) term'))    ) ( Just (casubst id term' term avoid) ) --beta-reducere propriu-zisa
+reduce2' (App term1 term2) avoid = case reduce2' term1 avoid of -- REDUCERE STANGA
+    Nothing -> case reduce2' term2 avoid of -- REDUCERE DREAPTA
+        Nothing -> trace ("CBN1" ++ (show (App term1 term2)) ) Nothing
+        Just term2' -> trace ("CBN2" ++ (show (App term1 term2)) ) (Just (App term1 term2'))
+    Just term1' -> trace ("CBN3" ++ (show (App term1 term2))) (Just (App term1' term2))
+-- evitarea reducerii termenilor din interiorul unei lambda abstractii
+reduce2' (Lambda id term) avoid = trace ("CBN4" ++ (show (Lambda id term))) Nothing
+
+reduce2 :: Term -> Maybe Term
+reduce2 t = reduce2' t (vars t)
+
+reduceByName :: Term -> Term
+reduceByName term = case reduce2 term of
+    Nothing -> term
+    Just term' -> reduceByName term'
+
+reducereCBNFor :: Int -> Term -> Term
+reducereCBNFor 0 term = term
+reducereCBNFor n term = case reduce2 term of 
+    Nothing -> term
+    Just term' -> reducereCBNFor (n-1) term'
+
+reduceCBN100 = reducereCBNFor 100 
+
+
+--TESTE--
+testExB_ex02_1 = reduceCBN100 exB_entity1
+testExB_ex02_2 = reduceCBN100 exB_entity2
+
+
+-- Testati strategia si pe urmatorul exemplu:
+-- (λx1.x1 x1) (λx.x) (λy.y)
+-- exB_entity3 = App (
+--                 Lambda "x1" 
+--                     (App
+--                         (Var "x1")
+--                         (Var "x1")
+--                      )
+--                 )
+--                 (
+--                 Lambda "x1" 
+--                     (App
+--                         (Var "x1")
+--                         (Var "x1")
+--                      )
+--                 )

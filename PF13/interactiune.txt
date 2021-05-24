@@ -1,0 +1,110 @@
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Prelude> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_1
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 4
+trace-reduce1' 1
+Lambda "z" (Var "z")
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_1
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 6
+trace-reduce1' 4
+trace-reduce1' 1Var "z"
+Lambda "z" (Var "z")
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+
+pf13.hs:160:37: error:
+    * Couldn't match expected type `[Char]' with actual type `Term'
+    * In the second argument of `(++)', namely `(Lambda id term)'
+      In the first argument of `trace', namely
+        `("t_r4" ++ (Lambda id term))'
+      In the expression:
+        trace ("t_r4" ++ (Lambda id term)) (Just (Lambda id term'))
+    |
+160 |     Just term' -> trace ("t_r4" ++ (Lambda id term) ) (Just (Lambda id term'))
+    |                                     ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_1
+t_r6App (Lambda "x1" (Var "x1")) (App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))))
+t_r6App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z")))
+t_r6App (Lambda "x3" (Var "x3")) (Var "z")
+t_r4Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))
+t_r1Var "z"
+Lambda "z" (Var "z")
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_1
+t_r6App (Lambda "x1" (Var "x1")) (App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))))
+t_r6App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z")))
+t_r6App (Lambda "x3" (Var "x3")) (Var "z")
+t_r5Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))
+t_r1Var "z"
+t_r4Lambda "z" (Var "z")
+Lambda "z" (Var "z")
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_2
+t_r6App (Lambda "x1" (Lambda "x2" (Var "x2"))) (App (Lambda "x" (Var "x")) (Lambda "y" (Var "y")))
+t_r1Var "x2"
+t_r4Lambda "x2" (Var "x2")
+Lambda "x2" (Var "x2")
+*Main> testExB_2
+Lambda "x2" (Var "x2")
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+
+pf13.hs:324:53: error:
+    * Couldn't match expected type `[Char]' with actual type `Term'
+    * In the second argument of `(++)', namely `(Lambda id term)'
+      In the first argument of `trace', namely
+        `("CBN4" ++ (Lambda id term))'
+      In the expression: trace ("CBN4" ++ (Lambda id term)) Nothing
+    |
+324 | reduce2' (Lambda id term) avoid = trace ("CBN4" ++ (Lambda id term)) Nothing
+    |                                                     ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+
+pf13.hs:340:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+340 | reduceCBN100 reducereCBNFor 100
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :l pf13.hs
+[1 of 1] Compiling Main             ( pf13.hs, interpreted )
+Ok, one module loaded.
+*Main> testExB_ex02_1
+CBN6App (Lambda "x1" (Var "x1")) (App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))))
+CBN6App (Lambda "x2" (Var "x2")) (Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z")))
+CBN4Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))
+Lambda "z" (App (Lambda "x3" (Var "x3")) (Var "z"))
+*Main> testExB_ex02_2
+CBN6App (Lambda "x1" (Lambda "x2" (Var "x2"))) (App (Lambda "x" (Var "x")) (Lambda "y" (Var "y")))
+CBN4Lambda "x2" (Var "x2")
+Lambda "x2" (Var "x2")
