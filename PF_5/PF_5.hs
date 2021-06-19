@@ -4,15 +4,17 @@ Variante:
 V1:
 --}
 
-data Nat = Cons [Bool]
+-- data Nat = Cons [Bool]
 
-toDecimalAux ::Nat -> Int -> Int
-toDecimalAux [] _ = 0
-toDecimalAux (x:cx) n = (2**n) + (toDecimalAux cx n+1)
+-- toDecimalAux ::Nat -> Int -> Int
+-- toDecimalAux [] _ = 0
+-- toDecimalAux (x:cx) n = (2**n) + (toDecimalAux cx n+1)
 
-toDecimal :: Nat -> Int
-toDecimal [] = 0
-toDecimal arr = toDecimalAux arr 0
+-- toDecimal :: Nat -> Int
+-- toDecimal [] = 0
+-- toDecimal arr = toDecimalAux arr 0
+
+
 {-
 
     [False, True, True] = 011 = 6
@@ -32,7 +34,7 @@ toDecimal arr = toDecimalAux arr 0
 
 --}
 
---data Nat = Zero | Double Nat | DoubleAddOne Nat
+data Nat = Zero | Double Nat | DoubleAddOne Nat
 
 -- 3 = DoubleAddOne (DoubleAddOne Zero)
 
@@ -45,6 +47,16 @@ toDecimal arr = toDecimalAux arr 0
 -- 3.                instance Ord Nat
 -- 4.                instance Integral Nat
 -- 5.                instance Num Nat
+
+instance Eq Nat where
+    (==) Zero Zero = True
+    (==) (Double Zero) (Double Zero) = True
+    (==) (Double Zero) Zero = True
+    (==) Zero (Double Zero) = True
+    (==) Zero _ = False
+    (==) _ Zero = False
+    (==) (Double Zero) _ = False
+    (==) _ Zero = False
 
 -- 6. Complex a = numere complexe ale caror componente sunt de tip a (e.g. Complex Int, Complex Float)
 

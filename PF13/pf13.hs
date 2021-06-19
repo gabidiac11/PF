@@ -324,7 +324,7 @@ reduce2' (App term1 term2) avoid = case reduce2' term1 avoid of -- REDUCERE STAN
 reduce2' (Lambda id term) avoid = trace ("CBN4" ++ (show (Lambda id term))) Nothing
 
 reduce2 :: Term -> Maybe Term
-reduce2 t = reduce2' t (vars t)
+reduce2 t = reduce2' t (vars t),m
 
 reduceByName :: Term -> Term
 reduceByName term = case reduce2 term of
@@ -347,17 +347,19 @@ testExB_ex02_2 = reduceCBN100 exB_entity2
 
 -- Testati strategia si pe urmatorul exemplu:
 -- (λx1.x1 x1) (λx.x) (λy.y)
--- exB_entity3 = App (
---                 Lambda "x1" 
---                     (App
---                         (Var "x1")
---                         (Var "x1")
---                      )
---                 )
---                 (
---                 Lambda "x1" 
---                     (App
---                         (Var "x1")
---                         (Var "x1")
---                      )
---                 )
+exB_entity3 = App (
+                Lambda "x1" 
+                    (App
+                        (Var "x1")
+                        (Var "x1")
+                     )
+                )
+                (
+                    App
+                    (Lambda "x" (Var "x"))
+                    (Lambda "y" (Var "y"))
+                )
+
+testExB_ex02_3 = reduceCBN100 exB_entity3
+
+-- Puteti identifica un avantaj al strategiei CBN?
