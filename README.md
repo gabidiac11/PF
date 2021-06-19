@@ -1,2 +1,2 @@
 # PF
-Laboratoare pentru disciplina "Programare functionala", UAIC Informatica
+Laboratoare "Programare functionala", FII UAIC
